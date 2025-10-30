@@ -8,11 +8,11 @@ import { Menu, X } from 'lucide-react'
 
 const navLinks = [
   { href: "/", label: "Home" },
-  { href: "/about", label: "About Us" },
-  { href: "/admissions", label: "Admissions" },
-  { href: "/programmes", label: "Programmes" },
-  { href: "/college-life", label: "College Life" },
-  { href: "/fees-and-accommodation", label: "Fees & Accommodation" },
+  { href: "/about/", label: "About Us" },
+  { href: "/admissions/", label: "Admissions" },
+  { href: "/programmes/", label: "Programmes" },
+  { href: "/college-life/", label: "College Life" },
+  { href: "/fees-and-accommodation/", label: "Fees & Accommodation" },
 //   { href: "/apply", label: "Apply" },
 ]
 
@@ -55,7 +55,7 @@ const NavBar = () => {
                 >
                   {link.label}
                   {isActive && (
-                    <span className="absolute left-0 -bottom-1 w-full h-0.5 bg-blue-400" />
+                    <span className="absolute left-0 -bottom-1 w-full h-0.5 bg-red-400" />
                   )}
                 </Link>
               )
