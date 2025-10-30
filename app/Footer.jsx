@@ -1,4 +1,4 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
+
 "use client"
 
 import React from 'react'
@@ -63,32 +63,32 @@ const Footer = () => {
             <h3 className="text-lg font-semibold mb-4">Quick Links</h3>
             <ul className="space-y-3">
               <li>
-                <Link href="/colleges/about" className="text-gray-400 hover:text-white transition-colors text-sm">
+                <Link href="/about" className="text-gray-400 hover:text-white transition-colors text-sm">
                   About Us
                 </Link>
               </li>
               <li>
-                <Link href="/colleges/programmes" className="text-gray-400 hover:text-white transition-colors text-sm">
+                <Link href="/programmes" className="text-gray-400 hover:text-white transition-colors text-sm">
                   Our Programmes
                 </Link>
               </li>
               <li>
-                <Link href="/colleges/admissions" className="text-gray-400 hover:text-white transition-colors text-sm">
+                <Link href="/admissions" className="text-gray-400 hover:text-white transition-colors text-sm">
                   Admissions
                 </Link>
               </li>
               <li>
-                <Link href="/colleges/college-life" className="text-gray-400 hover:text-white transition-colors text-sm">
+                <Link href="/college-life" className="text-gray-400 hover:text-white transition-colors text-sm">
                   College Life
                 </Link>
               </li>
               <li>
-                <Link href="/colleges/fees-and-accommodation" className="text-gray-400 hover:text-white transition-colors text-sm">
+                <Link href="/fees-and-accommodation" className="text-gray-400 hover:text-white transition-colors text-sm">
                   Fees & Accommodation
                 </Link>
               </li>
               <li>
-                <Link href="/colleges/apply" className="text-gray-400 hover:text-white transition-colors text-sm">
+                <Link href="/apply" className="text-gray-400 hover:text-white transition-colors text-sm">
                   Apply Now
                 </Link>
               </li>
@@ -100,22 +100,22 @@ const Footer = () => {
             <h3 className="text-lg font-semibold mb-4">Our Programmes</h3>
             <ul className="space-y-3">
               <li>
-                <Link href="/colleges/programmes#a-level" className="text-gray-400 hover:text-white transition-colors text-sm">
+                <Link href="/programmes#a-level" className="text-gray-400 hover:text-white transition-colors text-sm">
                   A-Level Program
                 </Link>
               </li>
               <li>
-                <Link href="/colleges/programmes#foundation" className="text-gray-400 hover:text-white transition-colors text-sm">
+                <Link href="/programmes#foundation" className="text-gray-400 hover:text-white transition-colors text-sm">
                   International Foundation Year
                 </Link>
               </li>
               <li>
-                <Link href="/colleges/programmes#year-one" className="text-gray-400 hover:text-white transition-colors text-sm">
+                <Link href="/programmes#year-one" className="text-gray-400 hover:text-white transition-colors text-sm">
                   International Year One & Two
                 </Link>
               </li>
               <li>
-                <Link href="/colleges/programmes#selt" className="text-gray-400 hover:text-white transition-colors text-sm">
+                <Link href="/programmes#selt" className="text-gray-400 hover:text-white transition-colors text-sm">
                   SELT Preparation
                 </Link>
               </li>
