@@ -1,4 +1,4 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
+// /* eslint-disable @typescript-eslint/no-unused-vars */
 "use client"
 
 import React from 'react'
@@ -129,7 +129,7 @@ const About = () => {
         {/* Stats Section */}
         <section className="pt-5 pb-16">
         <div className="max-w-7xl mx-auto px-6">
-          <div className="flex items-center justify-center gap-8">
+          <div className="flex flex-wrap items-center justify-center md:gap-8 gap-3">
             {stats.map((stat, index) => (
               <motion.div
                 key={index}
@@ -137,14 +137,14 @@ const About = () => {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: index * 0.1 }}
-                className="text-center border rounded-xl border-red-500/30 border-l-2 border-l-red-500/70 flex items-center justify-center w-fit py-2 px-4 gap-3 cursor-pointer"
+                className="text-center border rounded-xl border-red-500/30 border-l-2 border-l-red-500/70 flex items-center justify-center w-fit md:py-2 py-1 md:px-4 px-2 gap-3 cursor-pointer"
               >
-                <div className="inline-flex items-center justify-center w-12 h-12 bg-red-100 rounded-xl ">
+                <div className="inline-flex items-center justify-center h-8 w-8 md:w-12 md:h-12 bg-red-100 rounded-xl ">
                   <stat.icon className="w-4 h-4 text-red-600" />
                 </div>
                 <div>
-                <div className="text-lg md:text-xl font-bold text-gray-900">{stat.value}</div>
-                <div className="text-gray-600 text-[12px] font-medium">{stat.label}</div>
+                <div className="text-base md:text-xl font-bold text-gray-900">{stat.value}</div>
+                <div className="text-gray-600 md:text-[12px] text-[10px] font-medium">{stat.label}</div>
                 </div>
               </motion.div>
             ))}

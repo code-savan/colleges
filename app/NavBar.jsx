@@ -73,7 +73,7 @@ const NavBar = () => {
           {/* Mobile Menu Button */}
           <button
             onClick={toggleMobileMenu}
-            className="md:hidden text-white p-2"
+            className="md:hidden text-black p-2"
             aria-label="Toggle menu"
           >
             {isMobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
@@ -93,8 +93,8 @@ const NavBar = () => {
                     onClick={() => setIsMobileMenuOpen(false)}
                     className={`font-medium transition-all duration-200
                       ${isActive
-                        ? 'text-blue-400'
-                        : 'text-gray-300 hover:text-white'}`}
+                        ? 'text-red-400'
+                        : 'text-gray-800'}`}
                   >
                     {link.label}
                   </Link>
@@ -103,7 +103,7 @@ const NavBar = () => {
               <Link
                 href="/apply"
                 onClick={() => setIsMobileMenuOpen(false)}
-                className="bg-blue-500 hover:bg-blue-600 text-white px-6 py-2.5 rounded-xl font-medium transition-colors text-center mt-4"
+                className="bg-red-500 hover:bg-red-600 text-white px-6 py-2.5 rounded-xl font-medium transition-colors text-center mt-4"
               >
                 Apply Now
               </Link>

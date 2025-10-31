@@ -21,6 +21,6 @@
         "@/*": ["./*"]
       }
     },
-    "include": ["next-env.d.js", "**/*.js", "**/*.jsx", ".next/types/**/*.js", "international-education/tailwind.config.js"],
+    "include": ["next-env.d.js", "**/*.js", "**/*.jsx", ".next/types/**/*.js", "colleges/tailwind.config.js"],
     "exclude": ["node_modules"]
   }
