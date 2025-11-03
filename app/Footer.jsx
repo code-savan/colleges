@@ -15,8 +15,8 @@ const Footer = () => {
           <div className="space-y-2">
             <Link href="/colleges" className="inline-block">
               <Image
-                src="/collegeslogo.png"
-                alt="British AUC Colleges"
+                src="/icon.jpeg"
+                alt="British AUC University Pathway"
                 width={140}
                 height={140}
                 className="h-12 w-auto "

@@ -13,7 +13,7 @@ const openSans = Open_Sans({
   });
 
 export const metadata = {
-  title: "British AUC University PathWay",
+  title: "British AUC University Pathway",
   description: "Achieving academic excellence and global success",
   icons: {
     icon: "/icon.jpeg",
