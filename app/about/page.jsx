@@ -79,7 +79,7 @@ const About = () => {
 
 
 
-      {/* Who We Are Section */}
+      {/* About Us Section */}
       <section className="py-16">
         <div className="max-w-7xl mx-auto px-6">
           <div className="grid md:grid-cols-2 gap-12 items-center">
@@ -90,17 +90,20 @@ const About = () => {
               className="space-y-6"
             >
               <h2 className="text-4xl font-bold text-gray-900">
-                Who We <span className="text-red-600">Are</span>
+                About <span className="text-red-600">Us</span>
               </h2>
               <div className="space-y-3 text-gray-600">
-                <p className="text-md leading-relaxed">
-                  British AUC University Pathway offers a vibrant and supportive learning environment dedicated to helping students achieve international qualifications at a lower cost and a pathway towards their dream international university and destination.
+                <p className="text-sm leading-relaxed">
+                  British AUC University Pathway offers a vibrant and supportive learning environment dedicated to helping international students achieve international qualifications at a lower cost and pathways towards their dream international university and destination.
                 </p>
-                <p className="text-md leading-relaxed">
-                  We provide comprehensive courses for 2 to 3 years of UK university-level education. Students who complete our International Year Two programme can progress to the final year of their UK degree, thus saving the student and their parent huge fees.
+                <p className="text-sm leading-relaxed">
+                  We provide comprehensive international university courses for progression to the first and second years of UK university education. Our programmes range from A-level, International Foundation Year Programme, Ontario Secondary School Diploma, Secure English Language Tests, SAT, to the International Year One Programme.
                 </p>
-                <p className="text-md leading-relaxed">
-                  British AUC University Pathway partners with leading institutions around the world offering a global education that opens doors to international career opportunities.
+                <p className="text-sm leading-relaxed">
+                  Students who complete our International Year One programme are eligible to progress into Year Two (Third Year) of UK university education, thus saving the student and their parents huge fees.
+                </p>
+                <p className="text-sm leading-relaxed">
+                  British AUC University Pathway partners with leading institutions around the world, offering a global education that opens doors to international career opportunities with a focus on academic excellence, comprehensive student support, and diverse learning.
                 </p>
               </div>
             </motion.div>
@@ -111,7 +114,7 @@ const About = () => {
               viewport={{ once: true }}
               className="relative"
             >
-              <div className="relative aspect-[4/3] rounded-2xl overflow-hidden shadow-xl">
+              <div className="relative aspect-4/3 rounded-2xl overflow-hidden shadow-xl">
                 <Image
                   src="/hero.png"
                   alt="Students studying"
@@ -152,7 +155,7 @@ const About = () => {
         </div>
       </section>
 
-      {/* Our Aim Section */}
+      {/* Aim Section */}
       <section className="py-20 bg-gray-50">
         <div className="max-w-7xl mx-auto px-6">
           <div className="max-w-4xl mx-auto">
@@ -166,16 +169,16 @@ const About = () => {
                 Our <span className="text-red-600">Aim</span>
               </h2>
               <p className="text-[16px] text-gray-600 leading-relaxed">
-                The aim of British AUC University Pathway is to provide students with an accessible high quality educational foundation that equips them with the knowledge, skills and qualifications necessary to gain admission into prestigious universities across the UK, US, Canada, Australia and New Zealand.
+                British AUC University Pathway aims to provide students with an accessible, high-quality educational foundation that equips them with the knowledge, skills, and qualifications necessary to gain admission into prestigious universities across the UK, US, Canada, Australia, and New Zealand.
               </p>
             </motion.div>
 
             <div className="grid md:grid-cols-2 gap-6">
               {[
                 "Ensure students meet international academic standards and university entry requirements",
-                "Enhance students' academic and personal development through a comprehensive foundation curriculum",
-                "Offer a global education experience, preparing students for success in diverse and competitive professional environments",
-                "Provide a seamless transition from secondary education to undergraduate studies, expanding access"
+                "Enhance students’ academic and personal development through a comprehensive foundation curriculum",
+                "Offer a global education experience, preparing students for success in a diverse and competitive professional environment.",
+                "Provide a seamless transition from secondary education to undergraduate studies, expanding access."
               ].map((aim, index) => (
                 <motion.div
                   key={index}
@@ -185,11 +188,86 @@ const About = () => {
                   transition={{ delay: index * 0.1 }}
                   className="bg-white p-4 rounded-xl shadow-sm border border-gray-100 flex gap-4 border-l-2 border-l-red-500/70"
                 >
-                  <CheckCircle2 className="w-6 h-6 text-red-600 flex-shrink-0 mt-1" />
+                <CheckCircle2 className="w-6 h-6 text-red-600 shrink-0 mt-1" />
                   <p className="text-gray-800 text-[14px] font-medium">{aim}</p>
                 </motion.div>
               ))}
             </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Why Choose Section */}
+      <section className="py-20">
+        <div className="max-w-7xl mx-auto px-6">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="text-center mb-12"
+          >
+            <h2 className="text-4xl font-bold text-gray-900">
+              Why Choose <span className="text-red-600">British AUC University Pathway</span>
+            </h2>
+          </motion.div>
+
+          <div className="grid md:grid-cols-2 gap-6">
+            {[
+              {
+                title: "Cost Effectiveness",
+                body:
+                  "Studying at the British AUC University Pathway Centre saves parents a significant cost of studying the same programme in the United Kingdom or around the world. Parents can save 70 – 80% of study costs for having their wards study their first and second year of university education with the British AUC University pathway centre.",
+              },
+              {
+                title: "Academic excellence",
+                body:
+                  "British AUC University Pathway Centre boasts over fifteen (15) years of preparing and sending students to universities around the world. Our academic faculty maintains a high standard of teaching and mentorship, ensuring that student meets the globally acceptable academic requirements for progression into prestigious universities in the United Kingdom, United States, Canada, etc.",
+              },
+              {
+                title: "Comprehensive curriculum aligned with global education standards",
+                body:
+                  "The British AUC University Pathway offers international qualifications that are recognized worldwide. These qualifications primarily align with the international curriculum and are therefore studied under strict conditions in tandem with global best practices.",
+              },
+              {
+                title: "Tailored Learning Experience",
+                body:
+                  "Our courses are designed to meet the specific needs of students transitioning to an international university. We employ the Oxbridge (Oxford and Cambridge) tutorial teaching system, providing each student with a tailored academic learning experience.",
+              },
+              {
+                title: "Guaranteed University Progression",
+                body:
+                  "Students who finished our International University Foundation Programme are guaranteed progression to over sixty-one (61) universities in the United Kingdom and twenty-three (23) universities in the United States of America and Canada. This gives the students a wide range of options to choose a university that is in alignment with their academic goals.",
+              },
+              {
+                title: "Expert Guidance/Counseling Department and Strong University Placement Record",
+                body:
+                  "British AUC University Pathway has over fifteen (15) years of expertise in education guidance and counselling, as well as an extensive record of placing international students at Russell group universities in the United Kingdom and Ivy League universities around the world. Therefore, rest assured that no matter the academic condition of the student, our professional University Placement team will get the student to the right university.",
+              },
+              {
+                title: "State-of-the-Art Facility with 24-Hour CCTV Recordings",
+                body:
+                  "Our center offers well-equipped modern classrooms with digital facilities to support students’ learning experience and foster a community of academic advancement and integration. British AUC University Pathway Centre is safe and secure with CCTV cameras in every classroom and space to ensure the safety and security of students in our facility.",
+              },
+            ].map((item, index) => (
+              <motion.div
+                key={item.title}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: (index % 4) * 0.05 }}
+                className="bg-white p-6 rounded-xl shadow-sm border border-gray-100 hover:shadow-md transition-shadow"
+              >
+                <div className="flex items-start gap-4">
+                  <div className="inline-flex items-center justify-center h-9 w-10 bg-red-100 rounded-full">
+                    <CheckCircle2 className="w-5 h-5 text-red-600" />
+                  </div>
+                  <div className="w-full">
+                    <h3 className="text-lg font-semibold text-gray-900 mb-2">{item.title}</h3>
+                    <p className="text-gray-700 text-[14px] leading-relaxed">{item.body}</p>
+                  </div>
+                </div>
+              </motion.div>
+            ))}
           </div>
         </div>
       </section>

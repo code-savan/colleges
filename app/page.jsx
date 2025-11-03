@@ -72,7 +72,7 @@ const Page = () => {
     <div className="min-h-screen w-full bg-white">
       <NavBar />
       {/* Hero Section */}
-      <section className="relative min-h-screen flex items-center justify-center bg-gray-50  pt-10">
+      <section className="relative min-h-screen flex items-center justify-center bg-gray-50 border pt-10">
         <div className="absolute inset-0">
           {/* Local hero image with blurPlaceholder for fastest LCP */}
           <Image
@@ -85,7 +85,7 @@ const Page = () => {
             blurDataURL="/hero-lqip.jpg"
             className="object-cover object-center opacity-10"
           />
-          <div className="absolute inset-0 bg-gradient-to-b from-white/90 via-white/80 to-white" />
+          <div className="absolute inset-0 bg-linear-to-b from-white/90 via-white/80 to-white" />
         </div>
         <div className="relative z-10 max-w-7xl mx-auto px-6 py-20">
           <motion.div
@@ -122,7 +122,7 @@ const Page = () => {
               </div>
             </div>
             <div className="relative">
-              <div className="relative aspect-[3/3] rounded-2xl overflow-hidden border border-gray-200 group shadow-lg">
+              <div className="relative aspect-3/3 rounded-2xl overflow-hidden border border-gray-200 group shadow-lg">
                 <Image
                   src="/hero.jpg"
                   alt="Education"
@@ -132,7 +132,7 @@ const Page = () => {
                   blurDataURL="/hero-lqip.jpg"
                   className="object-top object-cover group-hover:scale-105 transition-transform duration-500"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
+                <div className="absolute inset-0 bg-linear-to-t from-black/60 to-transparent" />
               </div>
               <div className="absolute -bottom-6 -right-6 md:w-24 md:h-24 w-16 h-16 bg-red-600 rounded-2xl -z-10" />
               <div className="absolute md:-top-6 md:-left-6 -top-4 -left-4 md:w-32 md:h-32 w-20 h-20 border-2 border-red-600/40 rounded-2xl -z-10" />
@@ -205,7 +205,7 @@ const Page = () => {
                     className="object-cover object-top"
                     priority
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/50 to-transparent" />
+                  <div className="absolute inset-0 bg-linear-to-t from-black/80 via-black/50 to-transparent" />
                   <div className="absolute inset-0 p-6 md:p-8 flex flex-col justify-end">
                     <h3 className="text-2xl font-bold text-white mb-3">
                       {programmes[activeProgramme].title}
@@ -267,7 +267,7 @@ const Page = () => {
                       transition={{ duration: 0.3 }}
                       className="relative overflow-hidden"
                     >
-                      <div className="relative aspect-[16/9] w-full">
+                      <div className="relative aspect-video w-full">
                         <Image
                           src={programme.image}
                           alt={programme.title}
@@ -278,7 +278,7 @@ const Page = () => {
                           className="object-cover"
                           priority
                         />
-                        <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/50 to-transparent" />
+                        <div className="absolute inset-0 bg-linear-to-t from-black/80 via-black/50 to-transparent" />
                         <div className="absolute inset-0 p-6 flex flex-col justify-end">
                           <div className="grid grid-cols-1 gap-2">
                             {programme.features.map((feature, idx) => (
@@ -286,7 +286,7 @@ const Page = () => {
                                 key={idx}
                                 className="flex items-center gap-2 text-white/90 bg-black/50 backdrop-blur-lg rounded-xl p-3"
                               >
-                                <CheckCircle2 className="w-5 h-5 text-red-400 flex-shrink-0" />
+                                <CheckCircle2 className="w-5 h-5 text-red-400 shrink-0" />
                                 <span className="text-sm font-medium">{feature}</span>
                               </div>
                             ))}
@@ -325,7 +325,7 @@ const Page = () => {
               >
                 <div className="relative w-12 h-12 mb-6">
                   <div className="absolute inset-0 bg-blue-500/20 rounded-xl transform -rotate-6 group-hover:rotate-3 transition-transform" />
-                  <div className="absolute inset-0 bg-gradient-to-br from-red-500 to-red-600 rounded-xl flex items-center justify-center">
+                  <div className="absolute inset-0 bg-linear-to-br from-red-500 to-red-600 rounded-xl flex items-center justify-center">
                     <feature.icon className="w-6 h-6 text-white" />
                   </div>
                 </div>
@@ -382,7 +382,7 @@ const Page = () => {
                 fill
                 className="object-cover object-center"
               />
-              <div className="absolute inset-0 bg-gradient-to-r from-red-700/50 to-red-600/50 backdrop-blur-sm" />
+              <div className="absolute inset-0 bg-linear-to-r from-red-700/50 to-red-600/50 backdrop-blur-sm" />
             </div>
 
             <div className="relative py-10 px-6 md:p-16">

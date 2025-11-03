@@ -127,19 +127,19 @@ const Footer = () => {
             <h3 className="text-lg font-semibold mb-4">Contact Us</h3>
             <ul className="space-y-4">
               <li className="flex items-start space-x-3">
-                <MapPin size={20} className="text-blue-400 mt-0.5 flex-shrink-0" />
+                <MapPin size={20} className="text-blue-400 mt-0.5 shrink-0" />
                 <div>
                   <p className="text-gray-400 text-sm">Kingfem GA247, Plot 264 Ahmadu Bello Way, Abuja-FCT, Nigeria</p>
                 </div>
               </li>
               <li className="flex items-center space-x-3">
-                <Phone size={20} className="text-blue-400 flex-shrink-0" />
+                <Phone size={20} className="text-blue-400 shrink-0" />
                 <a href="tel:+2348059000097" className="text-gray-400 hover:text-white transition-colors text-sm">
                   +2348059000097
                 </a>
               </li>
               <li className="flex items-center space-x-3">
-                <Mail size={20} className="text-blue-400 flex-shrink-0" />
+                <Mail size={20} className="text-blue-400 shrink-0" />
                 <a href="mailto:info@britishauc.edu" className="text-gray-400 hover:text-white transition-colors text-sm">
                 admin@britishauc.com
                 </a>
