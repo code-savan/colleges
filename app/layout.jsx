@@ -17,7 +17,7 @@ export const metadata = {
   description: "Achieving academic excellence and global success",
   icons: {
     icon: "/icon.jpeg",
-    shortcut: "/collegeslogo.png",
+    shortcut: "/icon.jpeg",
   },
   openGraph: {
     images: ["/collegeslogo.png"],
