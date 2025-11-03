@@ -17,7 +17,10 @@ export const metadata = {
   description: "Achieving academic excellence and global success",
   icons: {
     icon: "/icon.jpeg",
+    shortcut: "/icon.jpeg",
+    images: "/collegeslogo.png",
   },
+
 };
 
 export default function RootLayout({ children }) {

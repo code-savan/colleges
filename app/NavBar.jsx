@@ -31,7 +31,7 @@ const NavBar = () => {
           {/* Logo */}
           <Link href="/" className="flex items-center">
             <Image
-              src="/icon.jpeg"
+              src="/collegeslogo.png"
               alt="British AUC University Pathway"
               width={160}
               height={160}
