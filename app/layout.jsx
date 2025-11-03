@@ -17,10 +17,14 @@ export const metadata = {
   description: "Achieving academic excellence and global success",
   icons: {
     icon: "/icon.jpeg",
-    shortcut: "/icon.jpeg",
-    images: "/collegeslogo.png",
+    shortcut: "/collegeslogo.png",
   },
-
+  openGraph: {
+    images: ["/collegeslogo.png"],
+  },
+  twitter: {
+    images: ["/collegeslogo.png"],
+  },
 };
 
 export default function RootLayout({ children }) {
