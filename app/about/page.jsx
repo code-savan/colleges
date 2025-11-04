@@ -10,7 +10,7 @@ import Footer from '../Footer'
 
 const stats = [
   { value: "95%", label: "Success Rate", icon: Award },
-  { value: "1:12", label: "Teacher Ratio", icon: Users },
+  { value: "1:2", label: "Teacher Ratio", icon: Users },
   { value: "100+", label: "Partner Universities", icon: Globe },
   { value: "50+", label: "Countries Represented", icon: Heart }
 ]
