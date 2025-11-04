@@ -53,11 +53,48 @@ const features = [
 ]
 
 const whyChooseFeatures = [
-  { title: "Tailored Learning Experience", description: "Our courses are designed to meet the specific needs of students transitioning to university. We focus on academic excellence while developing key skills in critical thinking, research, and communication.", icon: BookOpen },
-  { title: "Guaranteed University Progression", description: "Successful completion of the pathway guarantees progression to partner universities, including some of the prestigious institutions worldwide.", icon: GraduationCap },
-  { title: "Expert Faculty and Personalized Support", description: "Our team of highly qualified educators and academic advisors provides personalized support throughout your journey ensuring you are well-prepared for university life.", icon: Users },
-  { title: "English Language Support", description: "We offer specialized English language programmes to help students meet university language proficiency standards.", icon: Globe },
-  { title: "State-of-the-Art Facilities", description: "Study in a modern, well equipped environment that supports both academic and extracurricular activities.", icon: School }
+  {
+    title: "Cost Effectiveness",
+    description:
+      "Studying at the British AUC University Pathway Centre saves parents a significant cost of studying the same programme in the United Kingdom or around the world. Parents can save 70–80% of study costs for having their wards study their first and second year of university education with the British AUC University Pathway Centre.",
+    icon: Star
+  },
+  {
+    title: "Academic Excellence",
+    description:
+      "British AUC University Pathway Centre boasts over fifteen (15) years of preparing and sending students to universities around the world. Our academic faculty maintains a high standard of teaching and mentorship, ensuring that students meet the globally acceptable academic requirements for progression into prestigious universities in the United Kingdom, United States, Canada, etc.",
+    icon: Award
+  },
+  {
+    title: "Comprehensive Curriculum Aligned with Global Education Standards",
+    description:
+      "The British AUC University Pathway offers international qualifications that are recognized worldwide. These qualifications primarily align with the international curriculum and are therefore studied under strict conditions in tandem with global best practices.",
+    icon: BookOpen
+  },
+  {
+    title: "Tailored Learning Experience",
+    description:
+      "Our courses are designed to meet the specific needs of students transitioning to an international university. We employ the Oxbridge (Oxford and Cambridge) tutorial teaching system, providing each student with a tailored academic learning experience.",
+    icon: Users
+  },
+  {
+    title: "Guaranteed University Progression",
+    description:
+      "Students who finish our International University Foundation Programme are guaranteed progression to over sixty-one (61) universities in the United Kingdom and twenty-three (23) universities in the United States of America and Canada. This gives the students a wide range of options to choose a university that is in alignment with their academic goals.",
+    icon: GraduationCap
+  },
+  {
+    title: "Expert Guidance/Counseling Department and Strong University Placement Record",
+    description:
+      "British AUC University Pathway has over fifteen (15) years of expertise in education guidance and counselling, as well as an extensive record of placing international students at Russell Group universities in the United Kingdom and Ivy League universities around the world. Therefore, rest assured that no matter the academic condition of the student, our professional University Placement team will get the student to the right university.",
+    icon: Globe
+  },
+  {
+    title: "State-of-the-Art Facility with 24-Hour CCTV Recordings",
+    description:
+      "Our centre offers well-equipped modern classrooms with digital facilities to support students’ learning experience and foster a community of academic advancement and integration. British AUC University Pathway Centre is safe and secure with CCTV cameras in every classroom and space to ensure the safety and security of students in our facility.",
+    icon: School
+  }
 ]
 
 const Page = () => {
