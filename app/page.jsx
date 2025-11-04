@@ -109,7 +109,7 @@ const Page = () => {
     <div className="min-h-screen w-full bg-white">
       <NavBar />
       {/* Hero Section */}
-      <section className="relative min-h-screen flex items-center justify-center bg-gray-50 border pt-10">
+      <section className="relative min-h-screen flex items-center justify-center bg-gray-50 pt-10">
         <div className="absolute inset-0">
           {/* Local hero image with blurPlaceholder for fastest LCP */}
           <Image
@@ -335,6 +335,25 @@ const Page = () => {
                 </AnimatePresence>
               </div>
             ))}
+          </div>
+          {/* Read More Button at Bottom */}
+          <div className="mt-10 flex justify-center">
+            <a
+              href="/programmes"
+              className="inline-flex items-center gap-2 bg-red-600 text-white px-8 py-3 rounded-full font-semibold shadow-lg hover:bg-red-700 active:bg-red-800 transition-colors text-base group"
+            >
+              <span>Read more</span>
+              <svg
+                className="w-5 h-5 text-white group-hover:translate-x-1 transition-transform duration-200"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth={2}
+                viewBox="0 0 24 24"
+                aria-hidden="true"
+              >
+                <path strokeLinecap="round" strokeLinejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
+              </svg>
+            </a>
           </div>
         </div>
       </section>
