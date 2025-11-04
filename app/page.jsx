@@ -48,7 +48,7 @@ const programmes = [
 
 const features = [
   { title: "Academic Excellence", description: "Comprehensive curriculum aligned with global standards", icon: Award, stats: "95% Success Rate" },
-  { title: "Personal Support", description: "Individualized academic guidance and mentorship", icon: Users, stats: "1:12 Teacher Ratio" },
+  { title: "Personal Support", description: "Individualized academic guidance and mentorship", icon: Users, stats: "1:2 Teacher Ratio" },
   { title: "Global Recognition", description: "Partnerships with top universities worldwide", icon: Star, stats: "100+ Partners" }
 ]
 
@@ -366,7 +366,7 @@ const Page = () => {
         </div>
       </section>
 
-  
+
 
       {/* CTA Section */}
       <section className="relative py-20 px-6">
