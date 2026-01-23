@@ -4,7 +4,7 @@
 import React from 'react'
 import { motion } from 'framer-motion'
 import Image from 'next/image'
-import { BookOpen, Target, Heart, Globe, Users, Award, GraduationCap, Sparkles, CheckCircle2 } from 'lucide-react'
+import { BookOpen, Target, Heart, Globe, Users, Award, GraduationCap, Sparkles, CheckCircle2, ArrowRight } from 'lucide-react'
 import NavBar from '../NavBar'
 import Footer from '../Footer'
 
@@ -356,32 +356,45 @@ const About = () => {
       {/* </section> */}
 
       {/* CTA Section */}
-      <section className="py-20 bg-gray-900">
-        <div className="max-w-4xl mx-auto px-6 text-center">
+      <section className="py-20 bg-linear-to-br from-gray-900 via-red-900 to-gray-900 relative overflow-hidden">
+        {/* Background decoration */}
+        <div className="absolute inset-0 opacity-10">
+          <div className="absolute top-0 left-1/4 w-96 h-96 bg-red-500 rounded-full blur-3xl" />
+          <div className="absolute bottom-0 right-1/4 w-96 h-96 bg-white rounded-full blur-3xl" />
+        </div>
+
+        <div className="relative max-w-5xl mx-auto px-6 text-center">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
           >
-            <h2 className="text-4xl font-bold text-white mb-4">
-              Ready to Start Your Journey?
+            <div className="inline-flex items-center gap-2 bg-white/10 backdrop-blur-md border border-white/20 px-4 py-2 rounded-full text-white/90 text-sm font-medium mb-6">
+              <GraduationCap className="w-4 h-4" />
+              Start Your Journey
+            </div>
+            <h2 className="text-3xl md:text-5xl font-bold text-white mb-6 leading-tight">
+              Ready to Begin Your <br />
+              <span className="text-red-400">Academic Journey?</span>
             </h2>
-            <p className="text-md text-gray-300 mb-8">
-              Join thousands of students who have successfully progressed to their dream universities
+            <p className="text-lg text-white/80 mb-10 max-w-2xl mx-auto leading-relaxed">
+              Join thousands of students who have successfully progressed to their dream universities worldwide
             </p>
-            <div className="flex flex-wrap justify-center gap-4">
+            <div className="flex flex-col sm:flex-row justify-center gap-4">
               <a
-                href="/colleges/apply"
-                className="bg-red-600 text-white px-8 py-3 rounded-xl font-medium hover:bg-red-700 transition-colors inline-flex items-center gap-2"
+                href="/apply"
+                className="inline-flex items-center justify-center gap-2 bg-white text-red-600 px-8 py-4 rounded-xl font-bold hover:bg-gray-100 transition-all duration-200 shadow-2xl hover:shadow-red-500/50 hover:scale-105"
               >
-                Apply Now
+                <span>Apply Now</span>
                 <CheckCircle2 className="w-5 h-5" />
               </a>
               <a
-                href="/colleges/programmes"
-                className="bg-white text-gray-900 px-8 py-3 rounded-xl font-medium hover:bg-gray-100 transition-colors"
+                href="/courses/degrees"
+                className="inline-flex items-center justify-center gap-2 bg-white/10 backdrop-blur-md border border-white/20 text-white px-8 py-4 rounded-xl font-bold hover:bg-white/20 transition-all duration-200"
               >
-                View Programmes
+                <span>View Programmes</span>
+                <ArrowRight className="w-5 h-5" />
               </a>
             </div>
           </motion.div>

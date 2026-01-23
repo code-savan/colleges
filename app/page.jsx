@@ -19,7 +19,7 @@ const programmes = [
     features: ["24 degree courses", "Multiple study locations", "Global recognition"],
     image: "/1.jpg",
     blurDataURL: "/1-lqip.jpg",
-    link: "/courses/degree"
+    link: "/courses/degrees"
   },
   {
     title: "Postgraduate & Master's Programmes",
@@ -47,7 +47,7 @@ const programmes = [
     blurDataURL: "/3-lqip.jpg"
   },
   {
-    title: "International Year One & Two",
+    title: "Diploma",
     description: "Earn university credits while completing the equivalent of the first and second years of a degree programme.",
     icon: Users,
     features: ["Direct university pathway", "Credit transfer", "Smooth transition"],
@@ -165,19 +165,68 @@ const Page = () => {
                   Achieve your UK degree studying at <span className="text-red-600">British AUC University Study Centre</span>
                 </h1>
                 <p className="text-sm text-gray-800/90 leading-relaxed">
-                  Welcome to British AUC University Pathway, we help you prepare for entry into leading universities worldwide. Our programmes provide the skills and support you need to succeed, offering a smooth transition to top global institutions. Start your journey with us today.
+                  Welcome to British AUC University Pathway, where you can earn your qualification directly with us. Through our university programmes, you will gain the skills, knowledge, and support you need to graduate with an internationally recognised degree, opening pathways to rewarding careers and further academic opportunities worldwide. Begin your degree journey with us today.
                 </p>
               </div>
-              <div className="grid grid-cols-3 gap-6 items-start">
-                {features.map((feature, index) => (
-                  <div
-                    key={index}
-                    className="text-center border-2 rounded-lg md:py-2 md:px-1 p-[2px] border-red-400/80 flex flex-col items-center justify-center bg-white shadow-sm h-full"
-                  >
-                    <div className="md:text-[16px] text-[13px] font-bold text-red-600">{feature.stats}</div>
-                    <div className="md:text-xs text-[10px] text-gray-700 font-medium">{feature.title}</div>
+              <div className="grid grid-cols-3 gap-3 items-stretch">
+                {/* Degree Course 1 */}
+                <Link
+                  href="/courses/degrees/llb-law"
+                  className="group border-2 rounded-lg p-2 border-blue-400/80 bg-white shadow-sm hover:shadow-md transition-all hover:border-blue-600 flex flex-col h-full"
+                >
+                  <div className="text-[10px] md:text-xs font-bold text-blue-600 group-hover:text-blue-700 line-clamp-2 mb-1">
+                    LLB (Hons) Law
                   </div>
-                ))}
+                  <div className="text-[9px] md:text-[10px] text-gray-600 mb-2 grow">
+                    Undergraduate
+                  </div>
+                  <div className="text-[9px] md:text-[10px] text-blue-600 group-hover:underline font-medium">
+                    View Course →
+                  </div>
+                </Link>
+
+                {/* Degree Course 2 */}
+                <Link
+                  href="/courses/degrees/ba-business-management"
+                  className="group border-2 rounded-lg p-2 border-blue-400/80 bg-white shadow-sm hover:shadow-md transition-all hover:border-blue-600 flex flex-col h-full"
+                >
+                  <div className="text-[10px] md:text-xs font-bold text-blue-600 group-hover:text-blue-700 line-clamp-2 mb-1">
+                    BA Business Management
+                  </div>
+                  <div className="text-[9px] md:text-[10px] text-gray-600 mb-2 grow">
+                    Undergraduate
+                  </div>
+                  <div className="text-[9px] md:text-[10px] text-blue-600 group-hover:underline font-medium">
+                    View Course →
+                  </div>
+                </Link>
+
+                {/* Master's Course */}
+                <Link
+                  href="/courses/masters/msc-data-science"
+                  className="group border-2 rounded-lg p-2 border-purple-400/80 bg-white shadow-sm hover:shadow-md transition-all hover:border-purple-600 flex flex-col h-full"
+                >
+                  <div className="text-[10px] md:text-xs font-bold text-purple-600 group-hover:text-purple-700 line-clamp-2 mb-1">
+                    MSc Data Science
+                  </div>
+                  <div className="text-[9px] md:text-[10px] text-gray-600 mb-2 grow">
+                    Postgraduate
+                  </div>
+                  <div className="text-[9px] md:text-[10px] text-purple-600 group-hover:underline font-medium">
+                    View Course →
+                  </div>
+                </Link>
+              </div>
+
+              {/* View All Courses Link */}
+              <div className="mt-3 text-center">
+                <Link
+                  href="/courses/degrees"
+                  className="inline-flex items-center gap-1 text-xs md:text-sm text-red-600 hover:text-red-700 font-semibold hover:underline"
+                >
+                  <span>View All Courses</span>
+                  <ArrowRight className="w-3 h-3 md:w-4 md:h-4" />
+                </Link>
               </div>
             </div>
             <div className="relative">
@@ -239,8 +288,8 @@ const Page = () => {
                         : 'bg-red-50 group-hover:bg-red-100'
                     }`}>
                       <programme.icon className={`w-5 h-5 ${
-                        activeProgramme === index ? 'text-white' : 'text-red-600'
-                      }`} />
+                      activeProgramme === index ? 'text-white' : 'text-red-600'
+                    }`} />
                     </div>
                     <div className="flex-1 min-w-0">
                       <h3 className={`font-semibold text-sm leading-tight ${
@@ -292,14 +341,14 @@ const Page = () => {
                       </div>
                       <h3 className="text-2xl md:text-3xl font-bold text-white leading-tight">
                         {activeProgrammeData.title}
-                      </h3>
+                    </h3>
                       <p className="text-white/90 text-sm md:text-base max-w-2xl leading-relaxed">
                         {activeProgrammeData.description}
                       </p>
                       <div className="grid grid-cols-1 sm:grid-cols-3 gap-2 md:gap-3 mt-4">
                         {activeProgrammeData.features.map((feature, idx) => (
-                          <div
-                            key={idx}
+                        <div
+                          key={idx}
                             className="flex items-center gap-2 text-white bg-white/10 backdrop-blur-md rounded-lg p-2.5 border border-white/10"
                           >
                             <CheckCircle2 className="w-4 h-4 text-red-400 shrink-0" />
@@ -410,66 +459,86 @@ const Page = () => {
       </section>
 
       {/* Why Choose Us Section */}
-      <section className="relative py-14 md:py-20 overflow-hidden flex flex-col items-center justify-center ">
-        <div className="absolute inset-0 bg-black" aria-hidden />
-        <div className="absolute inset-0">
-          <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[120%] h-40 bg-[#0A0F1C] blur-3xl" />
-          <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-[120%] h-40 bg-[#0A0F1C] blur-3xl" />
+      <section className="relative py-20 md:py-24 overflow-hidden bg-linear-to-b from-gray-50 to-white">
+        {/* Decorative elements */}
+        <div className="absolute inset-0 opacity-40">
+          <div className="absolute top-20 left-10 w-72 h-72 bg-red-200 rounded-full blur-3xl" />
+          <div className="absolute bottom-20 right-10 w-96 h-96 bg-blue-200 rounded-full blur-3xl" />
         </div>
 
-        <div className="relative max-w-7xl mx-auto ">
-          <div className="text-center mb-16">
-            <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
-              Why Choose <span className="text-red-400 block">British AUC University Pathway?</span>
+        <div className="relative max-w-7xl mx-auto px-6">
+          {/* Section Header */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+            className="text-center mb-16"
+          >
+            <div className="inline-flex items-center gap-2 bg-red-50 px-4 py-2 rounded-full text-red-600 text-sm font-semibold mb-6">
+              <Star className="w-4 h-4" />
+              Why Choose Us
+            </div>
+            <h2 className="text-3xl md:text-5xl font-bold text-gray-900 mb-6 leading-tight">
+              Why Choose<br />
+              <span className="text-red-600">British AUC University Pathway?</span>
             </h2>
-          </div>
-          <div className="flex flex-wrap justify-center gap-6">
+            <p className="text-lg text-gray-600 max-w-3xl mx-auto">
+              Discover the advantages that set us apart and prepare you for global academic success
+            </p>
+          </motion.div>
+
+          {/* Features Grid */}
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 justify-items-center">
             {whyChooseFeatures.map((feature, index) => (
-              <div
+              <motion.div
                 key={index}
-                className="group bg-white/5 hover:bg-white/10 backdrop-blur-sm border border-white/10 rounded-2xl p-6 transition-all duration-300 flex flex-col items-start flex-1 min-w-[260px] max-w-[340px] basis-[320px]"
-                style={{ minHeight: '280px', height: '100%' }}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5, delay: index * 0.1 }}
+                className="group relative bg-white rounded-2xl p-8 shadow-lg hover:shadow-2xl transition-all duration-300 border border-gray-100 hover:border-red-200 w-full"
               >
-                <div className="relative w-12 h-12 mb-6">
-                  <div className="absolute inset-0 bg-blue-500/20 rounded-xl transform -rotate-6 group-hover:rotate-3 transition-transform" />
-                  <div className="absolute inset-0 bg-linear-to-br from-red-500 to-red-600 rounded-xl flex items-center justify-center">
-                    <feature.icon className="w-6 h-6 text-white" />
+                {/* Icon */}
+                <div className="mb-6">
+                  <div className="relative inline-flex">
+                    <div className="absolute inset-0 bg-red-100 rounded-2xl blur-xl opacity-50 group-hover:opacity-75 transition-opacity" />
+                    <div className="relative w-16 h-16 bg-linear-to-br from-red-500 to-red-600 rounded-2xl flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform">
+                      <feature.icon className="w-8 h-8 text-white" />
+                    </div>
                   </div>
                 </div>
-                <h3 className="text-[18px] font-bold text-white mb-1">{feature.title}</h3>
-                <p className="text-gray-400 mb-4 text-[14px]">{feature.description}</p>
-                {feature.stats && (
-                  <div className="text-2xl font-bold text-red-400">{feature.stats}</div>
-                )}
-              </div>
+
+                {/* Content */}
+                <h3 className="text-xl font-bold text-gray-900 mb-3 group-hover:text-red-600 transition-colors">
+                  {feature.title}
+                </h3>
+                <p className="text-gray-600 leading-relaxed text-sm">
+                  {feature.description}
+                </p>
+
+                {/* Decorative corner */}
+                <div className="absolute top-0 right-0 w-20 h-20 bg-linear-to-br from-red-500/10 to-transparent rounded-bl-full opacity-0 group-hover:opacity-100 transition-opacity" />
+              </motion.div>
             ))}
           </div>
-          {/* Responsive: max 3 on a line */}
-          <style jsx>{`
-            @media (min-width: 1024px) {
-              div.flex.flex-wrap.justify-center.gap-6 > div {
-                flex: 1 1 30%;
-                max-width: 32%;
-              }
-            }
-            @media (max-width: 1023px) and (min-width: 640px) {
-              div.flex.flex-wrap.justify-center.gap-6 > div {
-                flex: 1 1 45%;
-                max-width: 48%;
-              }
-            }
-            @media (max-width: 639px) {
-              div.flex.flex-wrap.justify-center.gap-6 > div {
-                flex: 1 1 100%;
-                max-width: 100%;
-              }
-            }
-            div.flex.flex-wrap.justify-center.gap-6 > div {
-              display: flex;
-              flex-direction: column;
-              height: 320px;
-            }
-          `}</style>
+
+          {/* Bottom CTA */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6, delay: 0.3 }}
+            className="text-center mt-16"
+          >
+            <Link
+              href="/apply"
+              className="inline-flex items-center gap-2 bg-red-600 text-white px-8 py-4 rounded-xl font-bold hover:bg-red-700 transition-all duration-200 shadow-lg hover:shadow-xl hover:scale-105"
+            >
+              <span>Start Your Journey</span>
+              <ArrowRight className="w-5 h-5" />
+            </Link>
+          </motion.div>
         </div>
       </section>
 

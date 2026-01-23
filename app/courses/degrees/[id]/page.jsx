@@ -1,5 +1,6 @@
 import React from 'react'
 import Link from 'next/link'
+import Image from 'next/image'
 import NavBar from '../../../NavBar'
 import Footer from '../../../Footer'
 import {
@@ -13,7 +14,12 @@ import {
   CheckCircle2,
   ArrowLeft,
   FileText,
-  Globe
+  Globe,
+  Briefcase,
+  BookMarked,
+  UserCheck,
+  Building2,
+  Sparkles
 } from 'lucide-react'
 import { degreeCourses } from '../coursesData'
 import { AnimatedSection, AnimatedHero } from './ClientWrapper'
@@ -25,276 +31,9 @@ export function generateStaticParams() {
   }))
 }
 
-// Temporary placeholder courses array (to be removed once coursesData is imported)
-const degreeCoursesOld = [
-  {
-    id: "bsc-psychology",
-    title: "BSc (Hons) Psychology",
-    category: "Psychology & Social Sciences",
-    award: "Undergraduate",
-    locations: ["Birmingham", "Leeds", "London", "Manchester", "Online"],
-    description: "Develop a deep understanding of human behavior and mental processes.",
-    duration: "3 years full-time",
-    mode: "Full-time / Part-time",
-    overview: "Our BSc (Hons) Psychology degree provides comprehensive coverage of core psychological topics including cognitive psychology, developmental psychology, social psychology, and biological psychology. You'll gain practical research skills and theoretical knowledge that prepares you for a career in psychology or related fields.",
-    keyFeatures: [
-      "Accredited by the British Psychological Society (BPS)",
-      "Hands-on research opportunities",
-      "Expert faculty with industry experience",
-      "State-of-the-art psychology laboratories",
-      "Option to specialize in final year",
-      "Work placement opportunities"
-    ],
-    careerPaths: [
-      "Clinical Psychologist",
-      "Educational Psychologist",
-      "Counsellor",
-      "Human Resources Specialist",
-      "Research Assistant",
-      "Mental Health Worker"
-    ],
-    entryRequirements: [
-      "A-Level: ABB-BBC or equivalent",
-      "International Baccalaureate: 30-32 points",
-      "BTEC: DDM in a related subject",
-      "English Language: IELTS 6.0 (no band less than 5.5)"
-    ]
-  },
-  {
-    id: "bsc-psychology-counselling",
-    title: "BSc (Hons) Psychology with Counselling",
-    category: "Psychology & Social Sciences",
-    award: "Undergraduate",
-    locations: ["Birmingham", "Leeds", "London", "Manchester", "Online"],
-    description: "Combine psychology with practical counselling skills.",
-    duration: "3 years full-time",
-    mode: "Full-time / Part-time",
-    overview: "This degree combines the scientific study of psychology with the practical application of counselling skills. You'll learn evidence-based therapeutic approaches while developing a deep understanding of human behavior, making you well-prepared for careers in mental health and counselling.",
-    keyFeatures: [
-      "BPS accreditation pathway",
-      "Counselling skills development",
-      "Supervised practice placements",
-      "Integration of theory and practice",
-      "Small group tutorials",
-      "Access to counselling supervision"
-    ],
-    careerPaths: [
-      "Counsellor",
-      "Psychotherapist",
-      "Mental Health Practitioner",
-      "Student Support Officer",
-      "Community Support Worker",
-      "Youth Worker"
-    ],
-    entryRequirements: [
-      "A-Level: ABB-BBC or equivalent",
-      "International Baccalaureate: 30-32 points",
-      "BTEC: DDM in a related subject",
-      "English Language: IELTS 6.0 (no band less than 5.5)"
-    ]
-  },
-  {
-    id: "ba-business-management",
-    title: "BA (Hons) Business Management",
-    category: "Business & Management",
-    award: "Undergraduate",
-    locations: ["Berlin", "Birmingham", "Leeds", "London", "Manchester", "Nottingham", "Online"],
-    description: "Build essential business leadership and management skills.",
-    duration: "3 years full-time",
-    mode: "Full-time / Part-time / Online",
-    overview: "Our Business Management degree equips you with the skills and knowledge to excel in today's dynamic business environment. You'll study core business disciplines including marketing, finance, operations, and strategy, while developing leadership and entrepreneurial capabilities.",
-    keyFeatures: [
-      "Industry-recognized qualification",
-      "Live business projects",
-      "Guest lectures from business leaders",
-      "International study opportunities",
-      "Professional mentorship programme",
-      "Entrepreneurship support"
-    ],
-    careerPaths: [
-      "Business Manager",
-      "Management Consultant",
-      "Project Manager",
-      "Business Analyst",
-      "Operations Manager",
-      "Entrepreneur"
-    ],
-    entryRequirements: [
-      "A-Level: ABB-BBC or equivalent",
-      "International Baccalaureate: 30-32 points",
-      "BTEC: DDM in Business or related subject",
-      "English Language: IELTS 6.0 (no band less than 5.5)"
-    ]
-  },
-  {
-    id: "bsc-health-care-management",
-    title: "BSc (Hons) Health and Care Management",
-    category: "Health & Social Care",
-    award: "Undergraduate",
-    locations: ["Berlin", "Birmingham", "Leeds", "London", "Manchester", "Online"],
-    description: "Lead and manage healthcare services effectively.",
-    duration: "3 years full-time",
-    mode: "Full-time / Part-time / Online",
-    overview: "This degree prepares you for leadership roles in healthcare and social care settings. You'll develop management skills specific to the healthcare sector, understanding policy, finance, quality improvement, and patient-centered care delivery.",
-    keyFeatures: [
-      "Healthcare sector focus",
-      "NHS and private sector insights",
-      "Quality improvement methodologies",
-      "Healthcare policy understanding",
-      "Work-based learning opportunities",
-      "Professional networking events"
-    ],
-    careerPaths: [
-      "Healthcare Manager",
-      "Hospital Administrator",
-      "Care Home Manager",
-      "Health Services Manager",
-      "Clinical Operations Manager",
-      "Healthcare Consultant"
-    ],
-    entryRequirements: [
-      "A-Level: BBC-BCC or equivalent",
-      "International Baccalaureate: 28-30 points",
-      "BTEC: DMM in Health or related subject",
-      "English Language: IELTS 6.0 (no band less than 5.5)"
-    ]
-  },
-  {
-    id: "bsc-forensic-criminal-investigation",
-    title: "BSc (Hons) Forensic and Criminal Investigation",
-    category: "Criminology & Law",
-    award: "Undergraduate",
-    locations: ["Online"],
-    description: "Master forensic techniques and criminal investigation methods.",
-    duration: "3 years full-time",
-    mode: "Online",
-    overview: "Combine forensic science with criminal investigation in this cutting-edge degree. You'll learn evidence collection, analysis techniques, and investigative procedures used in modern law enforcement and forensic laboratories.",
-    keyFeatures: [
-      "Virtual forensic laboratory",
-      "Crime scene simulation",
-      "Expert practitioner input",
-      "Latest forensic technologies",
-      "Legal and ethical frameworks",
-      "Research-informed teaching"
-    ],
-    careerPaths: [
-      "Forensic Scientist",
-      "Crime Scene Investigator",
-      "Forensic Analyst",
-      "Intelligence Analyst",
-      "Police Officer",
-      "Private Investigator"
-    ],
-    entryRequirements: [
-      "A-Level: BBC-BCC or equivalent",
-      "International Baccalaureate: 28-30 points",
-      "BTEC: DMM in a related subject",
-      "English Language: IELTS 6.0 (no band less than 5.5)"
-    ]
-  },
-  // Add more courses with full details as needed...
-  // For brevity, I'll add abbreviated versions for the remaining courses
-  {
-    id: "bsc-policing-criminal-investigation",
-    title: "BSc (Hons) Policing and Criminal Investigation",
-    category: "Criminology & Law",
-    award: "Undergraduate",
-    locations: ["Online"],
-    description: "Prepare for a career in policing and criminal justice.",
-    duration: "3 years full-time",
-    mode: "Online",
-    overview: "This degree is designed for those aspiring to join or progress within policing and law enforcement. You'll study criminal law, investigation techniques, and police procedures while developing critical thinking and decision-making skills.",
-    keyFeatures: [
-      "Police service curriculum alignment",
-      "Investigation methodologies",
-      "Criminal justice system understanding",
-      "Professional ethics training",
-      "Case study analysis",
-      "Policing research methods"
-    ],
-    careerPaths: [
-      "Police Officer",
-      "Detective",
-      "Intelligence Officer",
-      "Border Force Officer",
-      "Prison Officer",
-      "Security Manager"
-    ],
-    entryRequirements: [
-      "A-Level: BBC-BCC or equivalent",
-      "International Baccalaureate: 28-30 points",
-      "English Language: IELTS 6.0 (no band less than 5.5)"
-    ]
-  },
-  {
-    id: "llb-law",
-    title: "LLB (Hons) Law",
-    category: "Criminology & Law",
-    award: "Undergraduate",
-    locations: ["Birmingham", "London", "Manchester", "Online"],
-    description: "Gain a comprehensive understanding of legal principles.",
-    duration: "3 years full-time",
-    mode: "Full-time / Part-time / Online",
-    overview: "Our qualifying law degree provides you with comprehensive knowledge of the legal system and core legal principles. This degree is the first step towards becoming a practicing solicitor or barrister.",
-    keyFeatures: [
-      "Qualifying Law Degree (QLD)",
-      "Mock courtroom facilities",
-      "Legal clinic experience",
-      "Professional skills development",
-      "Expert legal practitioners teaching",
-      "Mooting competitions"
-    ],
-    careerPaths: [
-      "Solicitor",
-      "Barrister",
-      "Legal Advisor",
-      "Paralegal",
-      "Legal Consultant",
-      "Compliance Officer"
-    ],
-    entryRequirements: [
-      "A-Level: ABB-BBC or equivalent",
-      "International Baccalaureate: 30-32 points",
-      "English Language: IELTS 6.5 (no band less than 6.0)"
-    ]
-  },
-  {
-    id: "bsc-computing",
-    title: "BSc (Hons) Computing",
-    category: "Computing & Technology",
-    award: "Undergraduate",
-    locations: ["Berlin", "Birmingham", "Leeds", "London", "Manchester", "Online"],
-    description: "Develop software engineering and computing expertise.",
-    duration: "3 years full-time",
-    mode: "Full-time / Part-time / Online",
-    overview: "Gain practical computing skills and theoretical knowledge in software development, systems architecture, and emerging technologies. This degree prepares you for a successful career in the tech industry.",
-    keyFeatures: [
-      "Industry-standard technologies",
-      "Software development projects",
-      "Cloud computing experience",
-      "Cybersecurity fundamentals",
-      "AI and machine learning modules",
-      "Industry placement opportunities"
-    ],
-    careerPaths: [
-      "Software Developer",
-      "Systems Analyst",
-      "IT Consultant",
-      "Web Developer",
-      "Database Administrator",
-      "DevOps Engineer"
-    ],
-    entryRequirements: [
-      "A-Level: BBC-BCC or equivalent",
-      "International Baccalaureate: 28-30 points",
-      "English Language: IELTS 6.0 (no band less than 5.5)"
-    ]
-  }
-  // Additional courses would follow the same pattern...
-]
-
-const CourseDetailPage = ({ params }) => {
-  const courseId = params.id
+const CourseDetailPage = async ({ params }) => {
+  const resolvedParams = await params
+  const courseId = resolvedParams.id
 
   // Find the course
   const course = degreeCourses.find(c => c.id === courseId)
@@ -312,7 +51,7 @@ const CourseDetailPage = ({ params }) => {
                 Detailed information for this course will be available soon. Course ID: {courseId}
               </p>
               <Link
-                href="/courses/degree"
+                href="/courses/degrees"
                 className="inline-flex items-center gap-2 bg-red-600 text-white px-6 py-3 rounded-lg font-medium hover:bg-red-700 transition-colors"
               >
                 <ArrowLeft className="w-4 h-4" />
@@ -327,141 +66,361 @@ const CourseDetailPage = ({ params }) => {
   }
 
   return (
-    <div className="min-h-screen w-full bg-white">
+    <div className="min-h-screen w-full ">
       <NavBar />
 
-      {/* Hero Section */}
-      <section className="relative bg-gradient-to-br from-red-600 to-red-700 pt-28 pb-16 text-white">
-        <div className="max-w-7xl mx-auto px-6">
+      {/* Hero Section with Background Image */}
+      <section className="relative pt-20 pb-32 overflow-hidden">
+        {/* Background Image */}
+        {course.id === 'llb-law' && (
+          <div className="absolute inset-0">
+            <Image
+              src="https://arden.ac.uk/themes/arden/images/styles/course_hero_1440px_x2/public/2021-03/node_1545.webp"
+              alt={course.title}
+              fill
+              className="object-cover"
+              priority
+            />
+            <div className="absolute inset-0 bg-gradient-to-r from-black/70 via-black/50 to-transparent" />
+          </div>
+        )}
+
+        <div className="relative max-w-7xl mx-auto px-6 pt-8 h-[500px]">
           <Link
-            href="/courses/degree"
-            className="inline-flex items-center gap-2 text-white/90 hover:text-white mb-6 transition-colors"
+            href="/courses/degrees"
+            className="inline-flex items-center gap-2 text-white hover:text-white/80 mb-8 transition-colors"
           >
             <ArrowLeft className="w-4 h-4" />
-            <span>Back to All Courses</span>
+            <span className="text-sm">Back to All Courses</span>
           </Link>
 
-          <AnimatedHero className="space-y-6">
-            <div className="flex flex-wrap items-center gap-3">
-              <span className="bg-white/20 backdrop-blur-sm px-4 py-1.5 rounded-full text-sm font-semibold">
-                {course.award}
-              </span>
-              <span className="bg-white/20 backdrop-blur-sm px-4 py-1.5 rounded-full text-sm font-semibold">
-                {course.category}
-              </span>
-            </div>
+          <div className="flex flex-col lg:flex-row gap-8 items-start relative h-full">
+            {/* Left: Course Title */}
+            {/* <></> */}
+            <AnimatedHero className="flex-1 absolute bottom-10">
+              <div className="mb-6">
 
-            <h1 className="text-4xl md:text-5xl font-bold leading-tight">
+                <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-4 leading-tight">
               {course.title}
             </h1>
+              </div>
 
-            <p className="text-xl text-white/90 max-w-3xl">
-              {course.description}
-            </p>
+              {/* Breadcrumb */}
+              <nav className="flex items-center gap-2 text-sm text-white/80">
+                <Link href="/" className="hover:text-white transition-colors">HOME</Link>
+                <span>→</span>
+                <Link href="/courses/degrees" className="hover:text-white transition-colors">COURSES</Link>
+                <span>→</span>
+                <Link href="/courses/degrees" className="hover:text-white transition-colors">UNDERGRADUATE</Link>
+                <span>→</span>
+                <span className="text-white font-medium">LAW DEGREE</span>
+              </nav>
+            </AnimatedHero>
 
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 pt-6">
-              <div className="flex items-center gap-3">
-                <div className="bg-white/20 backdrop-blur-sm p-3 rounded-lg">
-                  <Clock className="w-5 h-5" />
+            {/* Right: Floating Summary Card */}
+            <AnimatedSection delay={0.2} className="lg:w-[450px] shrink-0 absolute right-0 -bottom-10">
+              <div className="bg-white shadow-2xl p-6">
+                <h2 className="text-2xl font-bold text-gray-900 mb-6">Summary</h2>
+
+                {/* Study Level */}
+                <div className="mb-6">
+                  <p className="text-xs font-semibold text-red-500 uppercase tracking-wider mb-1">Study Level</p>
+                  <p className="text-lg font-semibold text-gray-900">{course.award}</p>
                 </div>
-                <div>
-                  <div className="text-sm text-white/80">Duration</div>
-                  <div className="font-semibold">{course.duration}</div>
+
+                {/* Award */}
+                <div className="mb-6">
+                  <p className="text-xs font-semibold text-red-500 uppercase tracking-wider mb-1">Award</p>
+                  <p className="text-lg font-semibold text-gray-900">Degree</p>
                 </div>
+
+                <div className="grid grid-cols-2 gap-6 mb-6">
+                  {/* Full Time */}
+                  <div>
+                    <p className="text-xs font-semibold text-red-500 uppercase tracking-wider mb-1">Full Time</p>
+                    <p className="text-lg font-semibold text-gray-900">{course.duration}</p>
+                  </div>
+
+                  {/* Part Time */}
+                  <div>
+                    <p className="text-xs font-semibold text-red-500 uppercase tracking-wider mb-1">Part Time</p>
+                    <p className="text-lg font-semibold text-gray-900">{course.duration}+</p>
               </div>
-              <div className="flex items-center gap-3">
-                <div className="bg-white/20 backdrop-blur-sm p-3 rounded-lg">
-                  <Calendar className="w-5 h-5" />
                 </div>
-                <div>
-                  <div className="text-sm text-white/80">Study Mode</div>
-                  <div className="font-semibold">{course.mode}</div>
+
+                {/* Location */}
+                <div className="mb-8">
+                  <p className="text-xs font-semibold text-red-500 uppercase tracking-wider mb-1">Location</p>
+                  <p className="text-base font-semibold text-gray-900">{course.locations.join(', ')}</p>
                 </div>
+
+                {/* Apply Button */}
+                <Link
+                  href="/apply"
+                  className="w-full flex items-center justify-center gap-2 bg-red-600 hover:bg-red-700 text-gray-100 px-6 py-4 rounded-xl font-bold text-lg transition-all duration-300 mb-3 shadow-lg"
+                >
+                  Apply today
+                  <ArrowLeft className="w-5 h-5 rotate-180" />
+                </Link>
+
+                {/* Speak to Advisor Button */}
+                <Link
+                  href="/contact"
+                  className="w-full flex items-center justify-center gap-2 bg-white border-2 border-gray-300 hover:border-gray-400 text-gray-900 px-6 py-3 rounded-xl font-semibold transition-all duration-300"
+                >
+                  Speak to an advisor
+                  <ArrowLeft className="w-5 h-5 rotate-180" />
+                </Link>
               </div>
-              <div className="flex items-center gap-3">
-                <div className="bg-white/20 backdrop-blur-sm p-3 rounded-lg">
-                  <Award className="w-5 h-5" />
-                </div>
-                <div>
-                  <div className="text-sm text-white/80">Qualification</div>
-                  <div className="font-semibold">{course.award}</div>
-                </div>
-              </div>
+            </AnimatedSection>
             </div>
-          </AnimatedHero>
         </div>
       </section>
 
       {/* Main Content */}
-      <section className="py-16">
+      <section className="py-12">
         <div className="max-w-7xl mx-auto px-6">
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
             {/* Main Content Column */}
-            <div className="lg:col-span-2 space-y-12">
+            <div className="lg:col-span-2 space-y-8">
               {/* Course Overview */}
               <AnimatedSection delay={0.1}>
-                <h2 className="text-2xl font-bold text-gray-900 mb-4 flex items-center gap-2">
-                  <BookOpen className="w-6 h-6 text-red-600" />
+                <div className="bg-white">
+                  <h2 className="text-xl font-bold text-gray-900 mb-4 flex items-center gap-2">
+                    <BookOpen className="w-5 h-5 text-gray-600" />
                   Course Overview
                 </h2>
-                <p className="text-gray-700 leading-relaxed">
-                  {course.overview}
-                </p>
+                  <div className="text-gray-700 leading-relaxed space-y-3 text-sm font-medium">
+                    {course.overview.split('\n\n').map((paragraph, idx) => (
+                      <p key={idx}>{paragraph}</p>
+                    ))}
+                  </div>
+                </div>
               </AnimatedSection>
+
+              {/* Modules Section */}
+              {course.modules && (
+                <AnimatedSection delay={0.15}>
+                  <div className="bg-white rounded-lg">
+                    <h2 className="text-xl font-bold text-gray-900 mb-4 flex items-center gap-2">
+                      <BookMarked className="w-5 h-5 text-gray-600" />
+                      Course Structure
+                    </h2>
+
+                    <div className="space-y-6">
+                      <div className="bg-blue-50 border border-blue-100 p-4 rounded-lg">
+                        <p className="text-gray-700 text-sm font-medium">
+                          With this professionally focused law degree, you&apos;ll learn practical skills for your future employability. At the start of level 6, you will have the opportunity to select a degree pathway that aligns with your career goals.
+                        </p>
+                      </div>
+
+                      {/* Level 4 */}
+                      <div className="rounded-lg">
+                        <h3 className="text-lg font-bold text-gray-900 mb-3">{course.modules.level4.title}</h3>
+                        <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
+                          {course.modules.level4.courses.map((module, idx) => (
+                            <div key={idx} className="flex items-start gap-2 text-sm font-medium">
+                              <CheckCircle2 className="w-4 h-4 text-gray-600 shrink-0 mt-0.5" />
+                              <span className="text-gray-700">{module}</span>
+                            </div>
+                          ))}
+                        </div>
+                      </div>
+
+                      {/* Level 5 */}
+                      <div className="rounded-lg">
+                        <h3 className="text-lg font-bold text-gray-900 mb-3">{course.modules.level5.title}</h3>
+                        <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
+                          {course.modules.level5.courses.map((module, idx) => (
+                            <div key={idx} className="flex items-start gap-2 text-sm font-medium">
+                              <CheckCircle2 className="w-4 h-4 text-gray-600 shrink-0 mt-0.5" />
+                              <span className="text-gray-700">{module}</span>
+                            </div>
+                          ))}
+                        </div>
+                      </div>
+
+                      {/* Level 6 Pathways */}
+                      <div className="space-y-4">
+                        <h3 className="text-lg font-bold text-gray-900">{course.modules.level6.title}</h3>
+
+                        {course.modules.level6.pathways.map((pathway, idx) => (
+                          <div key={idx} className="rounded-lg">
+                            <h4 className="text-base font-bold text-gray-900 mb-3">{pathway.name}</h4>
+
+                            <div className="mb-3">
+                              <p className="text-xs font-semibold text-gray-600 mb-2">Core modules:</p>
+                              <div className="space-y-1">
+                                {pathway.core.map((module, mIdx) => (
+                                  <div key={mIdx} className="flex items-start gap-2 text-sm pl-3 font-medium">
+                                    <span className="text-gray-500">•</span>
+                                    <span className="text-gray-700">{module}</span>
+                                  </div>
+                                ))}
+                              </div>
+                            </div>
+
+                            {pathway.optional && (
+                              <div>
+                                <p className="text-xs font-semibold text-gray-600 mb-2">Optional modules:</p>
+                                <div className="space-y-2 pl-3">
+                                  {Object.entries(pathway.optional).map(([block, modules], bIdx) => (
+                                    <div key={bIdx}>
+                                      <p className="text-xs text-gray-500 mb-1">{block.replace(/([A-Z])/g, ' $1').trim()}:</p>
+                                      <div className="space-y-1 pl-3">
+                                        {modules.map((module, mIdx) => (
+                                          <div key={mIdx} className="flex items-start gap-2 text-sm font-medium">
+                                            <span className="text-gray-400">▪</span>
+                                            <span className="text-gray-600">{module}</span>
+                                          </div>
+                                        ))}
+                                      </div>
+                                    </div>
+                                  ))}
+                                </div>
+                              </div>
+                            )}
+                          </div>
+                        ))}
+
+                        <div className="bg-amber-50 border border-amber-200 p-3 rounded-lg">
+                          <p className="text-xs text-gray-700 font-medium">
+                            <strong>Note:</strong> If you decide not to opt for one of the designated pathways, you will automatically be placed on the SQE path with the EU Law and Legal Dissertation modules.
+                          </p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </AnimatedSection>
+              )}
 
               {/* Key Features */}
               <AnimatedSection delay={0.2}>
-                <h2 className="text-2xl font-bold text-gray-900 mb-6 flex items-center gap-2">
-                  <CheckCircle2 className="w-6 h-6 text-red-600" />
+                <div className="bg-white rounded-lg">
+                  <h2 className="text-xl font-bold text-gray-900 mb-4 flex items-center gap-2">
+                    <Sparkles className="w-5 h-5 text-gray-600" />
                   Key Features
                 </h2>
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
                   {course.keyFeatures.map((feature, index) => (
-                    <div
-                      key={index}
-                      className="flex items-start gap-3 p-4 bg-gray-50 rounded-lg border border-gray-200"
-                    >
-                      <CheckCircle2 className="w-5 h-5 text-red-600 flex-shrink-0 mt-0.5" />
-                      <span className="text-gray-700">{feature}</span>
+                      <div key={index} className="flex items-start gap-2 p-3 bg-gray-50 rounded-lg border border-gray-200">
+                        <CheckCircle2 className="w-4 h-4 text-gray-600 shrink-0 mt-0.5" />
+                        <span className="text-gray-700 text-sm font-medium">{feature}</span>
                     </div>
                   ))}
+                  </div>
                 </div>
               </AnimatedSection>
+
+              {/* Study and Career Support */}
+              {course.support && (
+                <AnimatedSection delay={0.25}>
+                  <div className="bg-white rounded-lg">
+                    <h2 className="text-xl font-bold text-gray-900 mb-4 flex items-center gap-2">
+                      <UserCheck className="w-5 h-5 text-gray-600" />
+                      Study and Career Support
+                    </h2>
+                    <div className="space-y-4">
+                      {course.support.map((item, idx) => (
+                        <div key={idx} className="rounded-lg">
+                          <h3 className="text-base font-bold text-gray-900 mb-2">{item.title}</h3>
+                          <p className="text-gray-700 text-sm leading-relaxed font-medium">{item.description}</p>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                </AnimatedSection>
+              )}
 
               {/* Career Paths */}
               <AnimatedSection delay={0.3}>
-                <h2 className="text-2xl font-bold text-gray-900 mb-6 flex items-center gap-2">
-                  <Users className="w-6 h-6 text-red-600" />
-                  Career Opportunities
+                <div className="bg-white rounded-lg">
+                  <h2 className="text-xl font-bold text-gray-900 mb-4 flex items-center gap-2">
+                    <Briefcase className="w-5 h-5 text-gray-600" />
+                    Career Prospects
                 </h2>
-                <p className="text-gray-700 mb-4">
-                  Graduates of this programme can pursue various career paths including:
+                  <div className="bg-blue-50 border border-blue-100 rounded-lg p-4 mb-4">
+                    <p className="text-gray-700 text-sm leading-relaxed font-medium">
+                      A law degree provides you with a wide range of transferable skills that can be used in a variety of professions. You&apos;ll learn how to research and critically analyse information, communicate effectively, and reach reasoned conclusions.
                 </p>
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
+                  </div>
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
                   {course.careerPaths.map((career, index) => (
-                    <div
-                      key={index}
-                      className="flex items-center gap-3 p-3 bg-red-50 rounded-lg border border-red-100"
-                    >
-                      <div className="w-2 h-2 bg-red-600 rounded-full flex-shrink-0" />
-                      <span className="text-gray-800 font-medium">{career}</span>
+                      <div key={index} className="flex items-center gap-2 p-3 bg-gray-50 rounded-lg border border-gray-200">
+                        <div className="w-1.5 h-1.5 bg-gray-600 rounded-full shrink-0" />
+                        <span className="text-gray-700 text-sm font-medium">{career}</span>
                     </div>
                   ))}
+                  </div>
                 </div>
               </AnimatedSection>
 
+              {/* Meet the Faculty */}
+              {course.faculty && (
+                <AnimatedSection delay={0.35}>
+                  <div className="bg-white rounded-lg">
+                    <h2 className="text-xl font-bold text-gray-900 mb-4 flex items-center gap-2">
+                      <Users className="w-5 h-5 text-gray-600" />
+                      Meet the Faculty
+                    </h2>
+                    <div className="flex flex-col md:flex-row items-center gap-4">
+                      {course.id === 'llb-law' ? (
+                        <div className="relative w-40 h-50 shrink-0 rounded-lg overflow-hidden border border-gray-200">
+                          <Image
+                            src="/llb-law.png"
+                            alt={course.faculty.name}
+                            fill
+                            className="object-cover"
+                          />
+                        </div>
+                      ) : (
+                        <div className="w-24 h-24 bg-gray-100 rounded-lg flex items-center justify-center shrink-0 border border-gray-200">
+                          <Users className="w-12 h-12 text-gray-400" />
+                        </div>
+                      )}
+
+                      <div className="flex-1">
+                        <h3 className="text-lg font-bold text-gray-900 mb-1">{course.faculty.name}</h3>
+                        <p className="text-gray-600 font-medium mb-3 text-sm">{course.faculty.title}</p>
+                        <p className="text-gray-700 text-sm leading-relaxed font-medium">{course.faculty.bio}</p>
+                      </div>
+                    </div>
+                  </div>
+                </AnimatedSection>
+              )}
+
+              {/* Industry Partnership */}
+              {course.industryPartnership && (
+                <AnimatedSection delay={0.4}>
+                  <div className="bg-white rounded-lg">
+                    <h2 className="text-xl font-bold text-gray-900 mb-4 flex items-center gap-2">
+                      <Building2 className="w-5 h-5 text-gray-600" />
+                      Industry Skills
+                    </h2>
+                    <div className="rounded-lg">
+                      <h3 className="text-base font-bold text-gray-900 mb-2">{course.industryPartnership.title}</h3>
+                      <p className="text-gray-700 text-sm leading-relaxed font-medium">{course.industryPartnership.description}</p>
+                    </div>
+                  </div>
+                </AnimatedSection>
+              )}
+
               {/* Entry Requirements */}
-              <AnimatedSection delay={0.4}>
-                <h2 className="text-2xl font-bold text-gray-900 mb-6 flex items-center gap-2">
-                  <FileText className="w-6 h-6 text-red-600" />
+              <AnimatedSection delay={0.45}>
+                <div className="bg-white rounded-lg">
+                  <h2 className="text-xl font-bold text-gray-900 mb-4 flex items-center gap-2">
+                    <FileText className="w-5 h-5 text-gray-600" />
                   Entry Requirements
                 </h2>
-                <div className="bg-gray-50 rounded-lg p-6 border border-gray-200">
-                  <ul className="space-y-3">
+                  <p className="text-gray-700 text-sm mb-4 leading-relaxed font-medium">
+                    Arden University considers applications on a case by case basis. If you have significant work experience, qualifications gained elsewhere, or a degree that isn&apos;t a clear pathway to this degree - we are happy to discuss your application.
+                  </p>
+                  <h3 className="font-bold text-gray-900 mb-3 text-sm">Eligibility</h3>
+                  <ul className="space-y-2">
                     {course.entryRequirements.map((req, index) => (
-                      <li key={index} className="flex items-start gap-3">
-                        <CheckCircle2 className="w-5 h-5 text-red-600 flex-shrink-0 mt-0.5" />
-                        <span className="text-gray-700">{req}</span>
+                      <li key={index} className="flex items-start gap-2">
+                        <CheckCircle2 className="w-4 h-4 text-gray-600 shrink-0 mt-0.5" />
+                        <span className="text-gray-700 text-sm font-medium">{req}</span>
                       </li>
                     ))}
                   </ul>
@@ -471,59 +430,62 @@ const CourseDetailPage = ({ params }) => {
 
             {/* Sidebar */}
             <div className="lg:col-span-1">
-              <div className="sticky top-28 space-y-6">
+              <div className="sticky top-28 space-y-4">
                 {/* Study Locations */}
-                <AnimatedSection delay={0.2} className="bg-white rounded-xl border border-gray-200 p-6">
-                  <h3 className="text-lg font-bold text-gray-900 mb-4 flex items-center gap-2">
-                    <MapPin className="w-5 h-5 text-red-600" />
-                    Study Locations
+                <AnimatedSection delay={0.2}>
+                  <div className="bg-white rounded-lg border border-gray-200 p-4">
+                    <h3 className="text-base font-bold text-gray-900 mb-3 flex items-center gap-2">
+                      <MapPin className="w-4 h-4 text-gray-600" />
+                      Study Location
                   </h3>
                   <div className="space-y-2">
                     {course.locations.map((location, index) => (
-                      <div
-                        key={index}
-                        className="flex items-center gap-2 p-3 bg-gray-50 rounded-lg"
-                      >
-                        <Globe className="w-4 h-4 text-red-600" />
-                        <span className="text-gray-700 font-medium">{location}</span>
+                        <div key={index} className="flex items-start gap-2 p-3 bg-gray-50 rounded-lg border border-gray-200">
+                          <Globe className="w-4 h-4 text-gray-600 shrink-0 mt-0.5" />
+                          <span className="text-gray-700 text-sm">{location}</span>
                       </div>
                     ))}
+                    </div>
                   </div>
                 </AnimatedSection>
 
                 {/* Apply Now Card */}
-                <AnimatedSection delay={0.3} className="bg-linear-to-br from-red-600 to-red-700 rounded-xl p-6 text-white">
-                  <h3 className="text-xl font-bold mb-3">Ready to Apply?</h3>
-                  <p className="text-white/90 mb-6 text-sm">
+                <AnimatedSection delay={0.3}>
+                  <div className="bg-gray-900 rounded-lg p-6 text-white">
+                    <h3 className="text-lg font-bold mb-2">Ready to Apply?</h3>
+                    <p className="text-gray-300 mb-4 text-sm">
                     Start your application today and take the first step towards your future.
                   </p>
                   <Link
                     href="/apply"
-                    className="w-full inline-flex items-center justify-center gap-2 bg-white text-red-600 px-6 py-3 rounded-lg font-semibold hover:bg-gray-100 transition-colors duration-200"
+                      className="w-full inline-flex items-center justify-center gap-2 bg-white text-gray-900 px-6 py-3 rounded-lg font-semibold hover:bg-gray-100 transition-colors duration-200 mb-2"
                   >
                     <GraduationCap className="w-5 h-5" />
                     Apply Now
                   </Link>
                   <Link
                     href="/admissions"
-                    className="w-full inline-flex items-center justify-center gap-2 bg-white/20 backdrop-blur-sm text-white px-6 py-3 rounded-lg font-medium hover:bg-white/30 transition-colors duration-200 mt-3"
+                      className="w-full inline-flex items-center justify-center gap-2 bg-white/10 backdrop-blur-sm text-white px-6 py-3 rounded-lg font-medium hover:bg-white/20 transition-colors duration-200"
                   >
                     Learn More
                   </Link>
+                  </div>
                 </AnimatedSection>
 
                 {/* Contact Card */}
-                <AnimatedSection delay={0.4} className="bg-gray-50 rounded-xl border border-gray-200 p-6">
-                  <h3 className="text-lg font-bold text-gray-900 mb-3">Need More Information?</h3>
+                <AnimatedSection delay={0.4}>
+                  <div className="bg-white rounded-lg border border-gray-200 p-4">
+                    <h3 className="text-base font-bold text-gray-900 mb-2">Need More Information?</h3>
                   <p className="text-gray-600 text-sm mb-4">
                     Our admissions team is here to help answer your questions.
                   </p>
                   <Link
-                    href="/admissions"
-                    className="w-full inline-flex items-center justify-center gap-2 bg-red-600 text-white px-6 py-2.5 rounded-lg font-medium hover:bg-red-700 transition-colors duration-200"
+                      href="/contact"
+                      className="w-full inline-flex items-center justify-center gap-2 bg-gray-900 text-white px-6 py-2.5 rounded-lg font-medium hover:bg-gray-800 transition-colors duration-200"
                   >
                     Contact Us
                   </Link>
+                  </div>
                 </AnimatedSection>
               </div>
             </div>

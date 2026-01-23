@@ -202,32 +202,132 @@ export const degreeCourses = [
     title: "LLB (Hons) Law",
     category: "Criminology & Law",
     award: "Undergraduate",
-    locations: ["Birmingham", "London", "Manchester", "Online"],
-    description: "Gain a comprehensive understanding of legal principles.",
-    duration: "3 years full-time",
-    mode: "Full-time / Part-time / Online",
-    overview: "Our qualifying law degree provides you with comprehensive knowledge of the legal system and core legal principles. This degree is the first step towards becoming a practicing solicitor or barrister.",
+    locations: ["British AUC University Study Centre, Abuja, Nigeria"],
+    description: "The perfect course if you aspire to become a lawyer or barrister. An LLB qualification is equivalent to a BA or BSc undergraduate degree and is the first step to an exciting choice of career possibilities in the legal sector.",
+    duration: "3 years",
+    mode: "Full-time",
+    overview: "Arden's LLB (Hons) Law course is the perfect course if you aspire to become a lawyer or barrister. An LLB qualification, also known as a Bachelor of Laws, is equivalent to a BA or BSc undergraduate degree and is the first step to an exciting choice of career possibilities in the legal sector or professions such as journalism, politics, policing, teaching, and much more.\n\nArden's LLB course, available at the British AUC University Study Centre covers the foundations of legal knowledge and has been updated to reflect recent changes to professional practice qualifications. You now have the opportunity to select from distinct degree pathways to help you prepare either for the Solicitors Qualifying Examination (SQE 1) or the Bar, including an International Bar pathway for those students looking to study modules that are more international in scope.\n\nHowever, we don't expect all our students to make a concrete decision about their future career when they first join us, and this law degree isn't just for those that want to work in the legal sector. You will develop a suite of workplace attributes that are valued across a wide range of careers, helping you graduate with a highly regarded qualification that provides value for a lifetime.",
     keyFeatures: [
-      "Qualifying Law Degree (QLD)",
-      "Mock courtroom facilities",
-      "Legal clinic experience",
-      "Professional skills development",
-      "Expert legal practitioners teaching",
-      "Mooting competitions"
+      "Choice of SQE (Solicitor), Bar (Barrister), or International Bar pathways",
+      "Access to Arden's Virtual Law Firm for real-world legal practice simulation",
+      "Arden Consumer Advice Clinic for hands-on client experience",
+      "Free access to Lexis+ legal research platform",
+      "Legal specialist career consultant dedicated to law students",
+      "Foundations of Legal Knowledge aligned with professional requirements",
+      "Campaign for Social Science membership benefits"
     ],
     careerPaths: [
       "Solicitor",
       "Barrister",
-      "Legal Advisor",
       "Paralegal",
-      "Legal Consultant",
-      "Compliance Officer"
+      "Legal Executive",
+      "Legal Secretary",
+      "Journalism",
+      "Policing",
+      "Politics",
+      "Teaching and Academia",
+      "Tax Consultancy",
+      "Business Consultancy"
     ],
     entryRequirements: [
-      "A-Level: ABB-BBC or equivalent",
-      "International Baccalaureate: 30-32 points",
-      "English Language: IELTS 6.5 (no band less than 6.0)"
-    ]
+      "Three subjects at GCE A level or equivalent, plus passes at grade C or above in four subjects at GCSE level or equivalent including GCSE English",
+      "Completion of a recognised Access Programme or equivalent",
+      "English proficiency: IELTS 6.0 (no less than 5.5 in any element); or TOEFL iBT 80; or equivalent",
+      "Non-standard entry: We consider applications with significant work experience or relevant qualifications on a case-by-case basis"
+    ],
+    modules: {
+      level4: {
+        title: "Level 4 (Year 2)",
+        courses: [
+          "English Legal System and Skills",
+          "Public Law",
+          "Tort 1",
+          "Crime 1",
+          "Civil Liberties in Practice",
+          "Contract Law"
+        ]
+      },
+      level5: {
+        title: "Level 5 (Year 3)",
+        courses: [
+          "Tort 2",
+          "Crime 2",
+          "Land Law and Practical Skills",
+          "Equity, Trusts and Wills",
+          "Dispute Resolution",
+          "Technology, Innovation and the Law"
+        ]
+      },
+      level6: {
+        title: "Level 6 (Year 4)",
+        pathways: [
+          {
+            name: "SQE (Solicitor) Pathway",
+            core: [
+              "Business Law and Practice",
+              "Solicitors Professional Practice",
+              "Property Practice"
+            ],
+            optional: {
+              blockA: ["EU Law", "Placement and Pro Bono (subject to eligibility)"],
+              blockB: ["Employment Law", "International Commercial Law", "Legal Dissertation (40 credits: no block C requirement if selected)"],
+              blockC: ["Family Law", "Public International Law", "Placement and Pro Bono (subject to eligibility)", "Legal Research Project (cannot be combined with Legal Dissertation)", "Legal Dissertation (Continued)"]
+            }
+          },
+          {
+            name: "Bar (Barrister) Pathway",
+            core: [
+              "Business Law and Practice",
+              "EU Law",
+              "Property Practice"
+            ],
+            optional: {
+              blockA: ["Employment Law", "Placement and Pro Bono (subject to eligibility)"],
+              blockB: ["International Commercial Law", "Legal Dissertation (40 credits: no block C requirement if selected)"],
+              blockC: ["Family Law", "Public International Law", "Placement and Pro Bono (subject to eligibility)", "Legal Research Project (cannot be combined with Legal Dissertation)", "Legal Dissertation (Continued)"]
+            }
+          },
+          {
+            name: "International Bar Pathway",
+            core: [
+              "Business Law and Practice",
+              "EU Law",
+              "International Commercial Law",
+              "Public International Law",
+              "Legal Dissertation (40 credits)"
+            ],
+            optional: null
+          }
+        ]
+      }
+    },
+    faculty: {
+      name: "Harriet Jones",
+      title: "Head of Department of Law",
+      bio: "Harriet is the head of the Department of Law at Arden University and former associate head with a focus on access to justice, mediation, and practical legal training. She is an RICS accredited mediator who is hoping to start a PhD on international mediation and access to justice. Harriet graduated from the University of Hull with a LLB Law (Hons) degree and later went on to achieve a Bar Professional Training Course. Harriet was called to the Bar by the Honourable Society of Lincoln's Inn in 2012 and continues to be very actively involved with the legal profession."
+    },
+    support: [
+      {
+        title: "Arden Consumer Advice Clinic",
+        description: "Arden's virtual Law Clinic is an exciting new volunteer opportunity for all students studying within the School of Law. Students will be trained to interview clients and provide initial advice with the support of qualified staff. This is an excellent opportunity for students wishing to understand legal working practices and pursue careers as solicitors or barristers."
+      },
+      {
+        title: "Virtual Law Firm",
+        description: "A unique aspect of this course is Arden's Virtual Law Firm. The Virtual Law Firm replicates many of the elements of professional law practice that you will encounter in the workplace, such as receiving client instructions, interacting with colleagues, and working to deadlines. Through the Virtual Law Firm, you'll be able to apply your learning to real-world scenarios in a safe environment with supportive feedback and guidance from our law faculty members."
+      },
+      {
+        title: "Legal Specialist Career Consultant",
+        description: "You will have access to a legal career consultant specialising in helping you make the most of our LLB degree. You'll also have the valuable opportunity to join career workshops and events that exclusively focus on your future with an LLB degree."
+      },
+      {
+        title: "Free Access to Lexis+",
+        description: "The largest collection of UK law, up-to-date legislation, case law, commentary and comprehensive practical guidance. Lexis+ is an advanced legal research platform that provides users with instant access to a vast collection of legal resources, across an extensive library of legal documents that includes case law, statutes, regulations, and secondary sources."
+      }
+    ],
+    industryPartnership: {
+      title: "Campaign for Social Science",
+      description: "Arden University is a member of the Campaign for Social Science. The Campaign demonstrates how social science improves public policy, society, and all our lives. It highlights the value of applied social science research and advocates for its greater use in decision-making and in government. As a member, Arden receives access to case studies, research into the value provided by social sciences, and insights into the employability of social science graduates."
+    }
   },
   {
     id: "bsc-computing",

@@ -5,6 +5,18 @@ const nextConfig = {
         dangerouslyAllowSVG: true,
         unoptimized: true,
         formats: ['image/webp', 'image/avif'],
+        remotePatterns: [
+            {
+                protocol: 'https',
+                hostname: 'arden.ac.uk',
+                pathname: '/themes/arden/images/**',
+            },
+            {
+                protocol: 'https',
+                hostname: 'api.exchangerate-api.com',
+                pathname: '/v4/latest/**',
+            },
+        ],
     },
     eslint: {
         // Warning: This allows production builds to successfully complete even if

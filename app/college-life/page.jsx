@@ -1,4 +1,4 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
+// /* eslint-disable @typescript-eslint/no-unused-vars */
 "use client"
 
 import React, { useState } from 'react'
@@ -297,6 +297,7 @@ const CollegeLife = () => {
                     <div className="text-sm text-gray-500">{event.date}</div>
                     <div className="text-xs text-red-600 font-medium">{event.type}</div>
                   </div>
+
                 </div>
                 <h3 className="font-bold text-gray-900">{event.title}</h3>
               </motion.div>
