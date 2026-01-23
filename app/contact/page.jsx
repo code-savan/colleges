@@ -27,13 +27,13 @@ const Page = () => {
   const handleSubmit = async (e) => {
     e.preventDefault()
     setIsSubmitting(true)
-    
+
     // Simulate form submission
     await new Promise(resolve => setTimeout(resolve, 1500))
-    
+
     setIsSubmitting(false)
     setIsSubmitted(true)
-    
+
     // Reset form after 3 seconds
     setTimeout(() => {
       setIsSubmitted(false)
@@ -51,19 +51,19 @@ const Page = () => {
     {
       icon: Mail,
       title: 'Email Us',
-      details: 'info@britishauc.edu',
-      link: 'mailto:info@britishauc.edu'
+      details: 'admin@britishauc.com',
+      link: 'mailto:admin@britishauc.com'
     },
     {
       icon: Phone,
       title: 'Call Us',
-      details: '+234 (0) 123 456 7890',
-      link: 'tel:+2341234567890'
+      details: '+234 805 900 0097',
+      link: 'tel:+2348059000097'
     },
     {
       icon: MapPin,
       title: 'Visit Us',
-      details: 'Lagos, Nigeria',
+      details: 'Abuja-FCT, Nigeria',
       link: '#'
     },
     {
@@ -113,7 +113,7 @@ const Page = () => {
       </section>
 
       {/* Contact Info Cards */}
-      <section className="py-16 bg-gradient-to-b from-gray-50 to-white">
+      <section className="py-16 bg-linear-to-b from-gray-50 to-white">
         <div className="max-w-7xl mx-auto px-6">
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 -mt-32 relative z-10">
             {contactInfo.map((info, index) => (
@@ -297,7 +297,7 @@ const Page = () => {
                 Visit Our Campus
               </h2>
               <p className="text-gray-600 mb-6 leading-relaxed">
-                We welcome prospective students and their families to visit our campus. 
+                We welcome prospective students and their families to visit our campus.
                 Experience our facilities, meet our staff, and get a feel for student life at British AUC.
               </p>
               <div className="space-y-4">
@@ -308,9 +308,9 @@ const Page = () => {
                   <div>
                     <h3 className="font-semibold text-gray-900 mb-1">Address</h3>
                     <p className="text-gray-600 text-sm">
-                      123 Education Avenue<br />
-                      Victoria Island, Lagos<br />
-                      Nigeria
+                      Kingfem GA247, Plot 264<br />
+                      Ahmadu Bello Way<br />
+                      Abuja-FCT, Nigeria
                     </p>
                   </div>
                 </div>
@@ -335,7 +335,7 @@ const Page = () => {
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5 }}
-              className="bg-gradient-to-br from-gray-200 to-gray-300 rounded-2xl h-96 flex items-center justify-center"
+              className="bg-linear-to-br from-gray-200 to-gray-300 rounded-2xl h-96 flex items-center justify-center"
             >
               <div className="text-center p-8">
                 <MapPin className="w-16 h-16 text-gray-500 mx-auto mb-4" />
@@ -353,4 +353,3 @@ const Page = () => {
 }
 
 export default Page
-
