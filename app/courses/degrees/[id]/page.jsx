@@ -70,43 +70,43 @@ const CourseDetailPage = async ({ params }) => {
       <NavBar />
 
       {/* Hero Section with Background Image */}
-      <section className="relative pt-20 pb-32 overflow-hidden">
+      <section className="relative pt-20 pb-16 lg:pb-32 overflow-hidden">
         {/* Background Image */}
-        {course.id === 'llb-law' && (
-          <div className="absolute inset-0">
-            <Image
-              src="https://arden.ac.uk/themes/arden/images/styles/course_hero_1440px_x2/public/2021-03/node_1545.webp"
-              alt={course.title}
-              fill
-              className="object-cover"
-              priority
-            />
-            <div className="absolute inset-0 bg-gradient-to-r from-black/70 via-black/50 to-transparent" />
-          </div>
-        )}
+        <div className="absolute inset-0">
+          <Image
+            src={
+              course.id === 'llb-law'
+                ? "https://arden.ac.uk/themes/arden/images/styles/course_hero_1440px_x2/public/2021-03/node_1545.webp"
+                : "https://arden.ac.uk/themes/arden/images/styles/course_hero_1440px_x2/public/2022-04/node_3721.webp"
+            }
+            alt={course.title}
+            fill
+            className="object-cover object-center"
+            priority
+          />
+          <div className="absolute inset-0 bg-gradient-to-r from-black/80 via-black/60 to-black/40 lg:from-black/70 lg:via-black/50 lg:to-transparent" />
+        </div>
 
-        <div className="relative max-w-7xl mx-auto px-6 pt-8 h-[500px]">
+        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 pt-4 sm:pt-8 min-h-[400px] lg:h-[500px]">
           <Link
             href="/courses/degrees"
-            className="inline-flex items-center gap-2 text-white hover:text-white/80 mb-8 transition-colors"
+            className="inline-flex items-center gap-2 text-white hover:text-white/80 mb-6 lg:mb-8 transition-colors"
           >
             <ArrowLeft className="w-4 h-4" />
             <span className="text-sm">Back to All Courses</span>
           </Link>
 
-          <div className="flex flex-col lg:flex-row gap-8 items-start relative h-full">
+          <div className="flex flex-col lg:flex-row gap-6 lg:gap-8 items-start relative lg:h-full">
             {/* Left: Course Title */}
-            {/* <></> */}
-            <AnimatedHero className="flex-1 absolute bottom-10">
-              <div className="mb-6">
-
-                <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-4 leading-tight">
-              {course.title}
-            </h1>
+            <AnimatedHero className="flex-1 lg:absolute lg:bottom-10 w-full lg:w-auto">
+              <div className="mb-4 lg:mb-6">
+                <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-3 lg:mb-4 leading-tight">
+                  {course.title}
+                </h1>
               </div>
 
               {/* Breadcrumb */}
-              <nav className="flex items-center gap-2 text-sm text-white/80">
+              <nav className="flex flex-wrap items-center gap-2 text-xs sm:text-sm text-white/80">
                 <Link href="/" className="hover:text-white transition-colors">HOME</Link>
                 <span>→</span>
                 <Link href="/courses/degrees" className="hover:text-white transition-colors">COURSES</Link>
@@ -118,46 +118,46 @@ const CourseDetailPage = async ({ params }) => {
             </AnimatedHero>
 
             {/* Right: Floating Summary Card */}
-            <AnimatedSection delay={0.2} className="lg:w-[450px] shrink-0 absolute right-0 -bottom-10">
-              <div className="bg-white shadow-2xl p-6">
-                <h2 className="text-2xl font-bold text-gray-900 mb-6">Summary</h2>
+            <AnimatedSection delay={0.2} className="w-full lg:w-[450px] shrink-0 lg:absolute lg:right-0 lg:-bottom-10 mt-6 lg:mt-0">
+              <div className="bg-white shadow-xl lg:shadow-2xl p-5 sm:p-6 rounded-lg lg:rounded-none">
+                <h2 className="text-xl sm:text-2xl font-bold text-gray-900 mb-4 sm:mb-6">Summary</h2>
 
                 {/* Study Level */}
-                <div className="mb-6">
+                <div className="mb-4 sm:mb-6">
                   <p className="text-xs font-semibold text-red-500 uppercase tracking-wider mb-1">Study Level</p>
-                  <p className="text-lg font-semibold text-gray-900">{course.award}</p>
+                  <p className="text-base sm:text-lg font-semibold text-gray-900">{course.award}</p>
                 </div>
 
                 {/* Award */}
-                <div className="mb-6">
+                <div className="mb-4 sm:mb-6">
                   <p className="text-xs font-semibold text-red-500 uppercase tracking-wider mb-1">Award</p>
-                  <p className="text-lg font-semibold text-gray-900">Degree</p>
+                  <p className="text-base sm:text-lg font-semibold text-gray-900">Degree</p>
                 </div>
 
-                <div className="grid grid-cols-2 gap-6 mb-6">
+                <div className="grid grid-cols-2 gap-4 sm:gap-6 mb-4 sm:mb-6">
                   {/* Full Time */}
                   <div>
                     <p className="text-xs font-semibold text-red-500 uppercase tracking-wider mb-1">Full Time</p>
-                    <p className="text-lg font-semibold text-gray-900">{course.duration}</p>
+                    <p className="text-base sm:text-lg font-semibold text-gray-900">{course.duration}</p>
                   </div>
 
                   {/* Part Time */}
                   <div>
                     <p className="text-xs font-semibold text-red-500 uppercase tracking-wider mb-1">Part Time</p>
-                    <p className="text-lg font-semibold text-gray-900">{course.duration}+</p>
-              </div>
+                    <p className="text-base sm:text-lg font-semibold text-gray-900">{course.duration}+</p>
+                  </div>
                 </div>
 
                 {/* Location */}
-                <div className="mb-8">
+                <div className="mb-6 sm:mb-8">
                   <p className="text-xs font-semibold text-red-500 uppercase tracking-wider mb-1">Location</p>
-                  <p className="text-base font-semibold text-gray-900">{course.locations.join(', ')}</p>
+                  <p className="text-sm sm:text-base font-semibold text-gray-900 leading-relaxed">{course.locations.join(', ')}</p>
                 </div>
 
                 {/* Apply Button */}
                 <Link
                   href="/apply"
-                  className="w-full flex items-center justify-center gap-2 bg-red-600 hover:bg-red-700 text-gray-100 px-6 py-4 rounded-xl font-bold text-lg transition-all duration-300 mb-3 shadow-lg"
+                  className="w-full flex items-center justify-center gap-2 bg-red-600 hover:bg-red-700 text-white px-6 py-3 sm:py-4 rounded-xl font-bold text-base sm:text-lg transition-all duration-300 mb-3 shadow-lg"
                 >
                   Apply today
                   <ArrowLeft className="w-5 h-5 rotate-180" />
@@ -166,14 +166,14 @@ const CourseDetailPage = async ({ params }) => {
                 {/* Speak to Advisor Button */}
                 <Link
                   href="/contact"
-                  className="w-full flex items-center justify-center gap-2 bg-white border-2 border-gray-300 hover:border-gray-400 text-gray-900 px-6 py-3 rounded-xl font-semibold transition-all duration-300"
+                  className="w-full flex items-center justify-center gap-2 bg-white border-2 border-gray-300 hover:border-gray-400 text-gray-900 px-6 py-2.5 sm:py-3 rounded-xl font-semibold text-sm sm:text-base transition-all duration-300"
                 >
                   Speak to an advisor
                   <ArrowLeft className="w-5 h-5 rotate-180" />
                 </Link>
               </div>
             </AnimatedSection>
-            </div>
+          </div>
         </div>
       </section>
 
