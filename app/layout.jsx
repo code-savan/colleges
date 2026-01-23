@@ -9,7 +9,9 @@ import { Open_Sans } from "next/font/google";
 const openSans = Open_Sans({
     subsets: ["latin"],
     variable: "--font-open-sans",
-    weight: ["300","400", "500", "600", "700", "800"]
+    weight: ["400", "600", "700"],
+    display: "swap",
+    preload: true,
   });
 
 export const metadata = {
@@ -24,6 +26,9 @@ export const metadata = {
   },
   twitter: {
     images: ["/collegeslogo.png"],
+  },
+  other: {
+    "format-detection": "telephone=no",
   },
 };
 

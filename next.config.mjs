@@ -3,7 +3,8 @@ const nextConfig = {
     output: 'export',
     images: {
         dangerouslyAllowSVG: true,
-        unoptimized: true
+        unoptimized: true,
+        formats: ['image/webp', 'image/avif'],
     },
     eslint: {
         // Warning: This allows production builds to successfully complete even if
@@ -11,7 +12,12 @@ const nextConfig = {
         ignoreDuringBuilds: true,
     },
     // Added trailingSlash option for better compatibility with static hosts
-    trailingSlash: true
+    trailingSlash: true,
+    // Performance optimizations
+    compress: true,
+    poweredByHeader: false,
+    reactStrictMode: true,
+    swcMinify: true,
 };
 
 export default nextConfig;

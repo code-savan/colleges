@@ -1,29 +1,47 @@
 "use client"
 
-import React, { useState } from 'react'
+import React, { useState, useMemo, useCallback } from 'react'
 import dynamic from 'next/dynamic'
 import { motion, AnimatePresence } from 'framer-motion'
 import Link from 'next/link'
 import { GraduationCap, BookOpen, Globe, Award, Users, School, Star, CheckCircle2, ArrowRight, Flag } from 'lucide-react'
 import Image from 'next/image'
 
-// Dynamically import NavBar and Footer
-const NavBar = dynamic(() => import('./NavBar'), { ssr: false })
-const Footer = dynamic(() => import('./Footer'), { ssr: false })
+// Dynamically import NavBar and Footer with SSR enabled for better performance
+const NavBar = dynamic(() => import('./NavBar'), { ssr: true })
+const Footer = dynamic(() => import('./Footer'), { ssr: true })
 
 const programmes = [
   {
+    title: "Undergraduate Degree Programmes",
+    description: "Explore 24 undergraduate degree courses across Business, Computing, Psychology, Law, and more.",
+    icon: GraduationCap,
+    features: ["24 degree courses", "Multiple study locations", "Global recognition"],
+    image: "/1.jpg",
+    blurDataURL: "/1-lqip.jpg",
+    link: "/courses/degree"
+  },
+  {
+    title: "Postgraduate & Master's Programmes",
+    description: "Advance your career with 21 postgraduate programmes including MSc, MA, and specialized certifications.",
+    icon: Award,
+    features: ["21 master's courses", "Flexible study modes", "Career advancement"],
+    image: "/5.jpg",
+    blurDataURL: "/5-lqip.jpg",
+    link: "/courses/masters"
+  },
+  {
     title: "A-Level Programme",
     description: "Internationally recognized qualification opening doors to top-tier universities worldwide.",
-    icon: GraduationCap,
+    icon: BookOpen,
     features: ["Expert teachers", "Robust curriculum", "Global recognition"],
-    image: "/1.jpg",
-    blurDataURL: "/1-lqip.jpg" // Consider generating/using real LQIP images
+    image: "/2.jpg",
+    blurDataURL: "/2-lqip.jpg"
   },
   {
     title: "International Foundation Year",
     description: "Bridge the gap between secondary education and university-level study with specialized pathways.",
-    icon: BookOpen,
+    icon: School,
     features: ["Business pathway", "Engineering pathway", "Law pathway"],
     image: "/3.jpg",
     blurDataURL: "/3-lqip.jpg"
@@ -31,10 +49,10 @@ const programmes = [
   {
     title: "International Year One & Two",
     description: "Earn university credits while completing the equivalent of the first and second years of a degree programme.",
-    icon: School,
+    icon: Users,
     features: ["Direct university pathway", "Credit transfer", "Smooth transition"],
-    image: "/5.jpg",
-    blurDataURL: "/5-lqip.jpg"
+    image: "/4.jpg",
+    blurDataURL: "/4-lqip.jpg"
   },
   {
     title: "SELT Preparation",
@@ -101,9 +119,12 @@ const Page = () => {
   const [activeProgramme, setActiveProgramme] = useState(0)
 
   // Optimize INP by preventing unnecessary re-render
-  const handleProgrammeClick = (i) => {
+  const handleProgrammeClick = useCallback((i) => {
     if (activeProgramme !== i) setActiveProgramme(i)
-  }
+  }, [activeProgramme])
+
+  // Memoize programme data to prevent unnecessary re-renders
+  const activeProgrammeData = useMemo(() => programmes[activeProgramme], [activeProgramme])
 
   return (
     <div className="min-h-screen w-full bg-white">
@@ -121,14 +142,15 @@ const Page = () => {
             placeholder="blur"
             blurDataURL="/hero-lqip.jpg"
             className="object-cover object-center opacity-10"
+            fetchPriority="high"
           />
           <div className="absolute inset-0 bg-linear-to-b from-white/90 via-white/80 to-white" />
         </div>
         <div className="relative z-10 max-w-7xl mx-auto px-6 py-20">
           <motion.div
-            initial={{ opacity: 0, y: 0 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.3 }}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 0.2, ease: "easeOut" }}
             className="grid md:grid-cols-2 gap-12 items-center"
           >
             <div className="space-y-8">
@@ -140,7 +162,7 @@ const Page = () => {
                   BRITISH AUC UNIVERSITY PATHWAY
                 </div>
                 <h1 className="text-4xl md:text-5xl font-bold text-gray-900 leading-tight">
-                  Your Pathway to <span className="text-red-600">Prestigious University Undergraduate Degree</span>
+                  Achieve your UK degree studying at <span className="text-red-600">British AUC University Study Centre</span>
                 </h1>
                 <p className="text-sm text-gray-800/90 leading-relaxed">
                   Welcome to British AUC University Pathway, we help you prepare for entry into leading universities worldwide. Our programmes provide the skills and support you need to succeed, offering a smooth transition to top global institutions. Start your journey with us today.
@@ -167,7 +189,9 @@ const Page = () => {
                   sizes="(min-width: 768px) 400px, 100vw"
                   placeholder="blur"
                   blurDataURL="/hero-lqip.jpg"
-                  className="object-top object-cover group-hover:scale-105 transition-transform duration-500"
+                  className="object-top object-cover group-hover:scale-105 transition-transform duration-300 ease-out will-change-transform"
+                  loading="eager"
+                  fetchPriority="high"
                 />
                 <div className="absolute inset-0 bg-linear-to-t from-black/60 to-transparent" />
               </div>
@@ -183,80 +207,117 @@ const Page = () => {
         <div className="max-w-7xl mx-auto px-6">
           <div className="text-center mb-10 md:mb-16 space-y-4">
             <h2 className="text-3xl md:text-4xl font-bold text-gray-900">
-              Our Pathway Programmes
+              Our Academic <span className="text-red-600">Programmes & Pathways</span>
             </h2>
             <p className="text-md text-gray-600 max-w-2xl mx-auto">
-              Comprehensive academic preparation designed to ensure your success in international education.
+              From A-Levels to Master&apos;s degrees - comprehensive academic programmes designed to ensure your success in international education.
             </p>
           </div>
 
-          {/* Desktop View */}
-          <div className="hidden md:grid md:grid-cols-12 gap-8 items-center">
-            <div className="md:col-span-4 space-y-4">
+          {/* Desktop Sidebar View */}
+          <div className="hidden md:grid md:grid-cols-12 gap-6 items-start">
+            {/* Compact Sidebar */}
+            <div className="md:col-span-5 lg:col-span-4 h-full flex flex-col gap-3">
               {programmes.map((programme, index) => (
                 <button
                   type="button"
                   key={index}
                   onClick={() => handleProgrammeClick(index)}
                   tabIndex={0}
-                  className={`w-full text-left p-5 rounded-2xl transition-all duration-300 focus:ring-2 ring-red-500 focus:outline-none ${
+                  className={`w-full flex-1 flex flex-col justify-center text-left p-3 rounded-lg transition-all duration-200 focus:ring-2 ring-red-500 focus:outline-none group ${
                     activeProgramme === index
-                      ? 'bg-red-600 text-white shadow-lg'
-                      : 'bg-gray-50 text-gray-700 hover:bg-gray-100 border border-gray-200'
+                      ? 'bg-red-600 text-white shadow-md'
+                      : 'bg-white text-gray-700 hover:bg-gray-50 border border-gray-200 hover:border-red-300'
                   }`}
                   aria-current={activeProgramme === index}
+                  style={{ minHeight: 0 }} // allows flex-1 to work cleanly
                 >
-                  <div className="flex items-start gap-4">
-                    <programme.icon className={`w-6 h-6 ${
-                      activeProgramme === index ? 'text-white' : 'text-red-600'
-                    }`} />
-                    <div>
-                      <h3 className="font-semibold mb-1">{programme.title}</h3>
-                      <p className={`text-sm ${
-                        activeProgramme === index ? 'text-white/90' : 'text-gray-600'
-                      }`}>
-                        {programme.description}
-                      </p>
+                  <div className="flex items-center gap-3">
+                    <div className={`shrink-0 p-2 rounded-lg transition-colors ${
+                      activeProgramme === index
+                        ? 'bg-white/20'
+                        : 'bg-red-50 group-hover:bg-red-100'
+                    }`}>
+                      <programme.icon className={`w-5 h-5 ${
+                        activeProgramme === index ? 'text-white' : 'text-red-600'
+                      }`} />
                     </div>
+                    <div className="flex-1 min-w-0">
+                      <h3 className={`font-semibold text-sm leading-tight ${
+                        activeProgramme === index ? 'text-white' : 'text-gray-900'
+                      }`}>
+                        {programme.title}
+                      </h3>
+                    </div>
+                    <ArrowRight className={`w-4 h-4 shrink-0 transition-transform ${
+                      activeProgramme === index
+                        ? 'text-white translate-x-0'
+                        : 'text-gray-400 -translate-x-1 group-hover:translate-x-0'
+                    }`} />
                   </div>
                 </button>
               ))}
             </div>
-            <div className="md:col-span-8">
+
+            {/* Display Panel */}
+            <div className="md:col-span-7 lg:col-span-8">
               <AnimatePresence mode="wait">
                 <motion.div
                   key={activeProgramme}
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  exit={{ opacity: 0, y: -20 }}
-                  transition={{ duration: 0.3 }}
-                  className="relative rounded-2xl overflow-hidden shadow-xl h-[330px] md:h-[440px] xl:h-[580px]"
+                  initial={{ opacity: 0, x: 20 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  exit={{ opacity: 0, x: -20 }}
+                  transition={{ duration: 0.3, ease: "easeOut" }}
+                  className="relative rounded-2xl overflow-hidden shadow-xl h-[500px]"
                 >
                   <Image
-                    src={programmes[activeProgramme].image}
-                    alt={programmes[activeProgramme].title}
+                    src={activeProgrammeData.image}
+                    alt={activeProgrammeData.title}
                     fill
                     sizes="(min-width: 1280px) 700px, (min-width: 768px) 500px, 100vw"
                     placeholder="blur"
-                    blurDataURL={programmes[activeProgramme].blurDataURL}
+                    blurDataURL={activeProgrammeData.blurDataURL}
                     className="object-cover object-top"
-                    priority
+                    loading={activeProgramme === 0 ? "eager" : "lazy"}
+                    fetchPriority={activeProgramme === 0 ? "high" : "auto"}
                   />
-                  <div className="absolute inset-0 bg-linear-to-t from-black/80 via-black/50 to-transparent" />
+                  <div className="absolute inset-0 bg-linear-to-t from-black/95 via-black/60 to-black/20" />
                   <div className="absolute inset-0 p-6 md:p-8 flex flex-col justify-end">
-                    <h3 className="text-2xl font-bold text-white mb-3">
-                      {programmes[activeProgramme].title}
-                    </h3>
-                    <div className="grid grid-cols-1 md:grid-cols-3 gap-2 md:gap-4">
-                      {programmes[activeProgramme].features.map((feature, idx) => (
-                        <div
-                          key={idx}
-                          className="flex items-center gap-2 text-white/90 bg-white/10 backdrop-blur-sm rounded-xl p-3"
-                        >
-                          <CheckCircle2 className="w-5 h-5 text-red-400" />
-                          <span className="text-sm font-medium">{feature}</span>
+                    <div className="space-y-4">
+                      <div className="inline-flex items-center gap-2 bg-white/10 backdrop-blur-md px-3 py-1.5 rounded-full border border-white/20 mb-2">
+                        <activeProgrammeData.icon className="w-4 h-4 text-white" />
+                        <span className="text-xs font-medium text-white/90">
+                          {activeProgrammeData.link ? 'Degree Programme' : 'Pathway Programme'}
+                        </span>
+                      </div>
+                      <h3 className="text-2xl md:text-3xl font-bold text-white leading-tight">
+                        {activeProgrammeData.title}
+                      </h3>
+                      <p className="text-white/90 text-sm md:text-base max-w-2xl leading-relaxed">
+                        {activeProgrammeData.description}
+                      </p>
+                      <div className="grid grid-cols-1 sm:grid-cols-3 gap-2 md:gap-3 mt-4">
+                        {activeProgrammeData.features.map((feature, idx) => (
+                          <div
+                            key={idx}
+                            className="flex items-center gap-2 text-white bg-white/10 backdrop-blur-md rounded-lg p-2.5 border border-white/10"
+                          >
+                            <CheckCircle2 className="w-4 h-4 text-red-400 shrink-0" />
+                            <span className="text-xs font-medium">{feature}</span>
+                          </div>
+                        ))}
+                      </div>
+                      {activeProgrammeData.link && (
+                        <div className="pt-3">
+                          <Link
+                            href={activeProgrammeData.link}
+                            className="inline-flex items-center gap-2 bg-white text-red-600 px-5 py-2.5 rounded-lg font-semibold hover:bg-red-50 transition-colors duration-200 text-sm shadow-lg"
+                          >
+                            <span>Explore Courses</span>
+                            <ArrowRight className="w-4 h-4" />
+                          </Link>
                         </div>
-                      ))}
+                      )}
                     </div>
                   </div>
                 </motion.div>
@@ -264,24 +325,24 @@ const Page = () => {
             </div>
           </div>
 
-          {/* Mobile View */}
+          {/* Mobile Accordion View */}
           <div className="md:hidden space-y-4" role="tablist">
             {programmes.map((programme, index) => (
-              <div key={index} className="overflow-hidden">
+              <div key={index} className="overflow-hidden rounded-2xl border border-gray-200">
                 <button
                   type="button"
                   tabIndex={0}
-                  className={`w-full text-left p-6 rounded-t-2xl transition-all duration-300 focus:ring-2 ring-red-500 focus:outline-none ${
+                  className={`w-full text-left p-5 transition-colors duration-200 focus:outline-none ${
                     activeProgramme === index
-                      ? 'bg-red-600 text-white rounded-b-none'
-                      : 'bg-gray-50 text-gray-700 hover:bg-gray-100 rounded-2xl border border-gray-200'
+                      ? 'bg-red-600 text-white'
+                      : 'bg-white text-gray-700'
                   }`}
                   aria-expanded={activeProgramme === index}
                   aria-controls={`programme-panel-${index}`}
                   onClick={() => handleProgrammeClick(index)}
                 >
-                  <div className="flex items-start gap-4">
-                    <programme.icon className={`w-6 h-6 ${
+                  <div className="flex items-start gap-3">
+                    <programme.icon className={`w-6 h-6 shrink-0 ${
                       activeProgramme === index ? 'text-white' : 'text-red-600'
                     }`} />
                     <div className="flex-1">
@@ -301,8 +362,8 @@ const Page = () => {
                       initial={{ height: 0, opacity: 0 }}
                       animate={{ height: "auto", opacity: 1 }}
                       exit={{ height: 0, opacity: 0 }}
-                      transition={{ duration: 0.3 }}
-                      className="relative overflow-hidden"
+                      transition={{ duration: 0.3, ease: "easeOut" }}
+                      className="overflow-hidden"
                     >
                       <div className="relative aspect-video w-full">
                         <Image
@@ -313,20 +374,29 @@ const Page = () => {
                           placeholder="blur"
                           blurDataURL={programme.blurDataURL}
                           className="object-cover"
-                          priority
+                          loading="lazy"
                         />
-                        <div className="absolute inset-0 bg-linear-to-t from-black/80 via-black/50 to-transparent" />
-                        <div className="absolute inset-0 p-6 flex flex-col justify-end">
-                          <div className="grid grid-cols-1 gap-2">
+                        <div className="absolute inset-0 bg-linear-to-t from-black/90 via-black/50 to-transparent" />
+                        <div className="absolute inset-0 p-5 flex flex-col justify-end">
+                          <div className="space-y-3">
                             {programme.features.map((feature, idx) => (
                               <div
                                 key={idx}
-                                className="flex items-center gap-2 text-white/90 bg-black/50 backdrop-blur-lg rounded-xl p-3"
+                                className="flex items-center gap-2 text-white/90 bg-black/40 backdrop-blur-md rounded-lg p-3"
                               >
-                                <CheckCircle2 className="w-5 h-5 text-red-400 shrink-0" />
+                                <CheckCircle2 className="w-4 h-4 text-red-400 shrink-0" />
                                 <span className="text-sm font-medium">{feature}</span>
                               </div>
                             ))}
+                            {programme.link && (
+                              <Link
+                                href={programme.link}
+                                className="inline-flex items-center gap-2 bg-red-600 text-white px-5 py-2.5 rounded-lg font-medium hover:bg-red-700 transition-colors duration-200 text-sm mt-2"
+                              >
+                                <span>Explore Courses</span>
+                                <ArrowRight className="w-4 h-4" />
+                              </Link>
+                            )}
                           </div>
                         </div>
                       </div>
@@ -335,25 +405,6 @@ const Page = () => {
                 </AnimatePresence>
               </div>
             ))}
-          </div>
-          {/* Read More Button at Bottom */}
-          <div className="mt-10 flex justify-center">
-            <a
-              href="/programmes"
-              className="inline-flex items-center gap-2 bg-red-600 text-white px-8 py-3 rounded-full font-semibold shadow-lg hover:bg-red-700 active:bg-red-800 transition-colors text-base group"
-            >
-              <span>Read more</span>
-              <svg
-                className="w-5 h-5 text-white group-hover:translate-x-1 transition-transform duration-200"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth={2}
-                viewBox="0 0 24 24"
-                aria-hidden="true"
-              >
-                <path strokeLinecap="round" strokeLinejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
-              </svg>
-            </a>
           </div>
         </div>
       </section>
@@ -428,9 +479,10 @@ const Page = () => {
       <section className="relative py-20 px-6">
         <div className="max-w-7xl mx-auto">
           <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            viewport={{ once: true, margin: "-100px" }}
+            transition={{ duration: 0.3, ease: "easeOut" }}
             className="relative overflow-hidden rounded-2xl"
           >
             <div className="absolute inset-0">
@@ -439,6 +491,8 @@ const Page = () => {
                 alt="Education"
                 fill
                 className="object-cover object-center"
+                loading="lazy"
+                fetchPriority="auto"
               />
               <div className="absolute inset-0 bg-linear-to-r from-red-700/50 to-red-600/50 backdrop-blur-sm" />
             </div>

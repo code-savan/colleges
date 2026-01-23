@@ -1,98 +1,251 @@
 "use client"
 
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 import { motion } from 'framer-motion'
 import NavBar from '../NavBar'
 import Footer from '../Footer'
-import { CheckCircle2 } from 'lucide-react'
+import { CheckCircle2, RefreshCw, Sparkles, Home, GraduationCap, Shield, Clock } from 'lucide-react'
 
-const fees = [
-  { sn: 1, programme: "A - Level", price: "₦3,105,000", duration: "One Year" },
-  { sn: 2, programme: "International Foundation Year", price: "₦3,105,000", duration: "One Year" },
-  { sn: 3, programme: "Ontario Secondary School Diploma", price: "₦3,105,000", duration: "One Year" },
+// Base prices in Naira
+const feesInNaira = [
+  { sn: 1, programme: "A - Level", price: 6729000, duration: "One Year" },
+  { sn: 2, programme: "International Foundation Year", price: 6729000, duration: "One Year" },
+  { sn: 3, programme: "Ontario Secondary School Diploma", price: 6729000, duration: "One Year" },
 ]
 
-const otherFees = [
-  { sn: 1, item: "Examination Fee" },
-  { sn: 2, item: "Medical Fee" },
-  { sn: 3, item: "Laboratory Fee" },
-  { sn: 4, item: "Accommodation" },
-]
-
-const accommodation = [
-  { sn: 1, type: "Shortlet Apartment", price: "₦700,000", duration: "Weekly" },
-  { sn: 2, type: "Air BnB", price: "₦315,000", duration: "Weekly" },
-  { sn: 3, type: "Shared Hostels", price: "₦105,000", duration: "Weekly" },
-  { sn: 4, type: "Hotel Apartment", price: "₦315,000", duration: "Weekly" },
+const accommodationInNaira = [
+  { sn: 1, type: "Shortlet Apartment", price: 700000, duration: "Weekly" },
+  { sn: 2, type: "Air BnB", price: 315000, duration: "Weekly" },
+  { sn: 3, type: "Shared Hostels", price: 105000, duration: "Weekly" },
+  { sn: 4, type: "Hotel Apartment", price: 315000, duration: "Weekly" },
 ]
 
 const Page = () => {
+  const [selectedCurrency, setSelectedCurrency] = useState('GBP')
+  const [exchangeRates, setExchangeRates] = useState(null)
+  const [loading, setLoading] = useState(true)
+  const [lastUpdated, setLastUpdated] = useState(null)
+
+  // Currency symbols
+  const currencySymbols = {
+    GBP: '£',
+    EUR: '€',
+    USD: '$',
+    NGN: '₦'
+  }
+
+  // Fetch exchange rates from API
+  useEffect(() => {
+    const fetchRates = async () => {
+      try {
+        setLoading(true)
+        // Using exchangerate-api.com (free tier available)
+        const response = await fetch('https://api.exchangerate-api.com/v4/latest/NGN')
+        const data = await response.json()
+
+        setExchangeRates({
+          GBP: data.rates.GBP,
+          EUR: data.rates.EUR,
+          USD: data.rates.USD,
+          NGN: 1
+        })
+        setLastUpdated(new Date(data.time_last_updated * 1000))
+        setLoading(false)
+      } catch (error) {
+        console.error('Error fetching exchange rates:', error)
+        // Fallback rates if API fails
+        setExchangeRates({
+          GBP: 0.00054,
+          EUR: 0.00063,
+          USD: 0.00069,
+          NGN: 1
+        })
+        setLastUpdated(new Date())
+        setLoading(false)
+      }
+    }
+
+    fetchRates()
+  }, [])
+
+  // Convert price from Naira to selected currency
+  const convertPrice = (nairaPrice) => {
+    if (!exchangeRates) return nairaPrice
+    const converted = nairaPrice * exchangeRates[selectedCurrency]
+    return converted.toLocaleString('en-US', {
+      minimumFractionDigits: 0,
+      maximumFractionDigits: 0
+    })
+  }
+
+  // Format display price with symbol
+  const formatPrice = (nairaPrice) => {
+    const symbol = currencySymbols[selectedCurrency]
+    const amount = convertPrice(nairaPrice)
+    return `${symbol}${amount}`
+  }
+
   return (
     <div className="min-h-screen w-full bg-white">
       <NavBar />
 
       {/* Hero */}
-      <section className="relative bg-linear-to-br from-red-50 via-white to-gray-50 pt-28 pb-10 overflow-hidden">
+      <section className="relative bg-linear-to-br from-gray-900 via-red-900 to-gray-900 pt-32 pb-20 overflow-hidden">
+        {/* Animated background elements */}
+        <div className="absolute inset-0 opacity-10">
+          <div className="absolute top-20 left-10 w-72 h-72 bg-red-500 rounded-full blur-3xl" />
+          <div className="absolute bottom-20 right-10 w-96 h-96 bg-white rounded-full blur-3xl" />
+        </div>
+
         <div className="relative max-w-7xl mx-auto px-6">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5 }}
+            transition={{ duration: 0.6 }}
             className="text-center"
           >
-            <h1 className="text-3xl md:text-4xl font-bold text-gray-900 mb-3">
-              Fees <span className="text-red-600">& Accommodation</span>
+            <motion.div
+              initial={{ scale: 0 }}
+              animate={{ scale: 1 }}
+              transition={{ duration: 0.5, delay: 0.2 }}
+              className="inline-flex items-center gap-2 bg-white/10 backdrop-blur-md border border-white/20 px-4 py-2 rounded-full text-white/90 text-sm font-medium mb-6"
+            >
+              <Sparkles className="w-4 h-4" />
+              Transparent Pricing
+            </motion.div>
+            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-6 leading-tight">
+              Investment in Your <br />
+              <span className="text-red-400">Academic Future</span>
             </h1>
-            <p className="text-[14px] text-gray-600 max-w-3xl mx-auto font-medium">
-              Transparent tuition and flexible living options tailored for our students.
+            <p className="text-lg text-white/80 max-w-2xl mx-auto leading-relaxed">
+              Clear, competitive tuition fees and premium accommodation options designed to support your educational journey.
             </p>
           </motion.div>
         </div>
       </section>
 
-        {/* Tuition Fee Per Year */}
-        <section className="py-12 bg-white">
+      {/* Currency Selector */}
+      <section className="sticky top-0 z-40 py-4 bg-white/80 backdrop-blur-xl border-b border-gray-200 shadow-sm">
         <div className="max-w-7xl mx-auto px-6">
-          <div className="mb-6">
-            <h2 className="text-2xl md:text-3xl font-bold text-gray-900">Tuition Fee Per Year</h2>
+          <div className="flex flex-col md:flex-row items-center justify-between gap-4">
+            <div className="flex items-center gap-4">
+              <span className="text-sm font-semibold text-gray-900">Currency:</span>
+              <div className="flex gap-2 p-1 bg-gray-100 rounded-xl">
+                {['GBP', 'EUR', 'USD', 'NGN'].map((currency) => (
+                  <button
+                    key={currency}
+                    onClick={() => setSelectedCurrency(currency)}
+                    className={`px-5 py-2 rounded-lg text-sm font-semibold transition-all duration-200 ${
+                      selectedCurrency === currency
+                        ? 'bg-red-600 text-white shadow-lg scale-105'
+                        : 'bg-transparent text-gray-700 hover:text-red-600'
+                    }`}
+                  >
+                    {currencySymbols[currency]} {currency}
+                  </button>
+                ))}
+              </div>
+            </div>
+
+            {/* Exchange Rate Info */}
+            <div className="flex items-center gap-3">
+              {loading ? (
+                <div className="flex items-center gap-2 text-sm text-gray-600">
+                  <RefreshCw className="w-4 h-4 animate-spin text-red-600" />
+                  <span>Fetching rates...</span>
+                </div>
+              ) : (
+                <div className="flex items-center gap-3">
+                  <div className="bg-linear-to-r from-red-50 to-orange-50 px-4 py-2 rounded-lg border border-red-100">
+                    <span className="text-xs font-medium text-gray-700">Exchange Rate:</span>
+                    <span className="ml-2 text-sm font-bold text-red-600">
+                      {currencySymbols[selectedCurrency]}1 = ₦{exchangeRates?.[selectedCurrency] ? (1 / exchangeRates[selectedCurrency]).toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 }) : '0'}
+                    </span>
+                  </div>
+                  {lastUpdated && (
+                    <div className="hidden sm:block text-xs text-gray-500">
+                      <Clock className="w-3 h-3 inline mr-1" />
+                      {lastUpdated.toLocaleTimeString()}
+                    </div>
+                  )}
+                </div>
+              )}
+            </div>
           </div>
-          <div className="overflow-x-auto rounded-2xl border border-gray-200 bg-white">
-            <table className="min-w-full text-left text-[14px]">
-              <thead>
-                <tr className="bg-gray-50 text-gray-700">
-                  <th className="px-4 py-3 font-semibold">S/N</th>
-                  <th className="px-4 py-3 font-semibold">Programme</th>
-                  <th className="px-4 py-3 font-semibold">Price</th>
-                  <th className="px-4 py-3 font-semibold">Duration</th>
-                </tr>
-              </thead>
-              <tbody className="divide-y divide-gray-200 text-gray-800">
-                <tr>
-                  <td className="px-4 py-3 font-medium">1</td>
-                  <td className="px-4 py-3">A - Level</td>
-                  <td className="px-4 py-3">₦6,729,000</td>
-                  <td className="px-4 py-3">One Year</td>
-                </tr>
-                <tr>
-                  <td className="px-4 py-3 font-medium">2</td>
-                  <td className="px-4 py-3">International Foundation Year</td>
-                  <td className="px-4 py-3">₦6,729,000</td>
-                  <td className="px-4 py-3">One Year</td>
-                </tr>
-                <tr>
-                  <td className="px-4 py-3 font-medium">3</td>
-                  <td className="px-4 py-3">Ontario Secondary School Diploma</td>
-                  <td className="px-4 py-3">₦6,729,000</td>
-                  <td className="px-4 py-3">One Year</td>
-                </tr>
-              </tbody>
-            </table>
+        </div>
+      </section>
+
+      {/* Tuition Fee Per Year */}
+      <section className="py-16 bg-linear-to-b from-white to-gray-50">
+        <div className="max-w-7xl mx-auto px-6">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5 }}
+            className="text-center mb-12"
+          >
+            <div className="inline-flex items-center gap-2 bg-red-50 px-4 py-2 rounded-full text-red-600 text-sm font-semibold mb-4">
+              <GraduationCap className="w-4 h-4" />
+              Annual Tuition
+            </div>
+            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-3">
+              Programme Fees
+            </h2>
+            <p className="text-gray-600 max-w-2xl mx-auto">
+              Comprehensive tuition packages with everything you need to succeed
+            </p>
+          </motion.div>
+
+          <div className="grid gap-6 mb-12">
+            {feesInNaira.map((fee, index) => (
+              <motion.div
+                key={fee.sn}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.4, delay: index * 0.1 }}
+                className="group bg-white rounded-2xl p-6 border border-gray-200 hover:border-red-300 hover:shadow-xl transition-all duration-300"
+              >
+                <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
+                  <div className="flex items-start gap-4">
+                    <div className="shrink-0 w-12 h-12 bg-linear-to-br from-red-500 to-red-600 rounded-xl flex items-center justify-center text-white font-bold shadow-lg group-hover:scale-110 transition-transform">
+                      {fee.sn}
+                    </div>
+                    <div>
+                      <h3 className="text-xl font-bold text-gray-900 mb-1">{fee.programme}</h3>
+                      <div className="flex items-center gap-2 text-sm text-gray-600">
+                        <Clock className="w-4 h-4" />
+                        <span>{fee.duration}</span>
+                      </div>
+                    </div>
+                  </div>
+                  <div className="flex items-center gap-3">
+                    <div className="text-right">
+                      <div className="text-sm text-gray-600 mb-1">Annual Fee</div>
+                      <div className="text-3xl font-bold text-red-600">{formatPrice(fee.price)}</div>
+                    </div>
+                  </div>
+                </div>
+              </motion.div>
+            ))}
           </div>
 
-          <div className="grid md:grid-cols-2 gap-8 mt-8">
-            <div>
-              <h3 className="text-lg font-semibold text-gray-900 mb-3">Fees include</h3>
-              <ul className="space-y-2 text-[14px] text-gray-800">
+          <div className="grid md:grid-cols-2 gap-6">
+            <motion.div
+              initial={{ opacity: 0, x: -20 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5 }}
+              className="bg-linear-to-br from-green-50 to-emerald-50 rounded-2xl p-6 border border-green-200"
+            >
+              <div className="flex items-center gap-2 mb-4">
+                <div className="p-2 bg-green-600 rounded-lg">
+                  <CheckCircle2 className="w-5 h-5 text-white" />
+                </div>
+                <h3 className="text-xl font-bold text-gray-900">What&apos;s Included</h3>
+              </div>
+              <ul className="space-y-3">
                 {[
                   'Tuition fees',
                   'Application fees',
@@ -102,91 +255,219 @@ const Page = () => {
                   'College T-shirt',
                   'University Application Support'
                 ].map((item) => (
-                  <li key={item} className="flex items-start gap-2"><CheckCircle2 className="w-4 h-4 text-red-600 mt-1" />{item}</li>
+                  <li key={item} className="flex items-start gap-3 text-gray-800">
+                    <CheckCircle2 className="w-5 h-5 text-green-600 shrink-0 mt-0.5" />
+                    <span className="font-medium">{item}</span>
+                  </li>
                 ))}
               </ul>
+            </motion.div>
+            <motion.div
+              initial={{ opacity: 0, x: 20 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5 }}
+              className="bg-linear-to-br from-orange-50 to-red-50 rounded-2xl p-6 border border-orange-200"
+            >
+              <div className="flex items-center gap-2 mb-4">
+                <div className="p-2 bg-orange-600 rounded-lg">
+                  <Shield className="w-5 h-5 text-white" />
+                </div>
+                <h3 className="text-xl font-bold text-gray-900">Additional Costs</h3>
             </div>
-            <div>
-              <h3 className="text-lg font-semibold text-gray-900 mb-3">Fees DO NOT include</h3>
-              <ul className="space-y-2 text-[14px] text-gray-800">
+              <ul className="space-y-3">
                 {['Accommodation', 'Medical Fees', 'Laboratory'].map((item) => (
-                  <li key={item} className="flex items-start gap-2"><CheckCircle2 className="w-4 h-4 text-red-600 mt-1" />{item}</li>
+                  <li key={item} className="flex items-start gap-3 text-gray-800">
+                    <div className="w-5 h-5 rounded-full border-2 border-orange-600 shrink-0 mt-0.5" />
+                    <span className="font-medium">{item}</span>
+                  </li>
                 ))}
               </ul>
+              <div className="mt-4 pt-4 border-t border-orange-200">
+                <p className="text-sm text-gray-700 leading-relaxed">
+                  These items are not included in tuition but can be arranged through our support services.
+                </p>
             </div>
+            </motion.div>
           </div>
         </div>
       </section>
 
       {/* Accommodation */}
-      <section className="py-12 bg-gray-50">
+      <section className="py-16 bg-white">
         <div className="max-w-7xl mx-auto px-6">
-          <div className="mb-6">
-            <h2 className="text-2xl md:text-3xl font-bold text-gray-900">Accommodation</h2>
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5 }}
+            className="text-center mb-12"
+          >
+            <div className="inline-flex items-center gap-2 bg-blue-50 px-4 py-2 rounded-full text-blue-600 text-sm font-semibold mb-4">
+              <Home className="w-4 h-4" />
+              Student Housing
           </div>
-          <div className="max-w-4xl text-gray-700 space-y-4 text-[14px] font-medium">
-            <p>
-              We know that where you live plays a big role in how well you learn and thrive. While we do not offer on-campus dormitories, we have partnered with trusted hospitality providers to ensure our A-Level students have access to safe, comfortable, and well-managed apartments.
+            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
+              Premium Accommodation
+            </h2>
+            <p className="text-gray-600 max-w-3xl mx-auto leading-relaxed">
+              Your home away from home matters. We&apos;ve partnered with trusted providers to offer safe, comfortable, and convenient living spaces.
             </p>
-            <p>
-              Our goal is to ensure every student enjoys a safe and supportive environment that allows them to focus on their studies and personal growth.
-            </p>
-            <p>Our recommended accommodation options are carefully chosen to provide:</p>
-            <ul className="list-disc pl-6 space-y-1">
-              <li><span className="font-semibold">Security & Peace of Mind</span> – located in secure neighborhoods with reliable facilities.</li>
-              <li><span className="font-semibold">Comfort & Convenience</span> – fully furnished apartments designed to make you feel at home from day one.</li>
-              <li><span className="font-semibold">Easy Access</span> – just a short distance from campus, shopping areas, and essential services.</li>
-              <li><span className="font-semibold">Choice & Flexibility</span> – from shared apartments for a lively student community experience to private units for those who prefer more independence.</li>
-            </ul>
+          </motion.div>
+
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 mb-12">
+            {[
+              { icon: Shield, title: 'Security & Safety', desc: 'Located in secure neighborhoods with 24/7 facilities' },
+              { icon: Home, title: 'Comfort & Style', desc: 'Fully furnished apartments ready from day one' },
+              { icon: GraduationCap, title: 'Campus Proximity', desc: 'Short distance to campus and essential services' },
+              { icon: CheckCircle2, title: 'Flexible Options', desc: 'Shared or private units to suit your preference' }
+            ].map((feature, index) => (
+              <motion.div
+                key={feature.title}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.4, delay: index * 0.1 }}
+                className="bg-linear-to-br from-gray-50 to-white rounded-xl p-6 border border-gray-200 hover:border-blue-300 hover:shadow-lg transition-all duration-300"
+              >
+                <div className="w-12 h-12 bg-blue-100 rounded-xl flex items-center justify-center mb-4">
+                  <feature.icon className="w-6 h-6 text-blue-600" />
+                </div>
+                <h3 className="font-bold text-gray-900 mb-2">{feature.title}</h3>
+                <p className="text-sm text-gray-600 leading-relaxed">{feature.desc}</p>
+              </motion.div>
+            ))}
           </div>
 
-          <div className="mt-8">
-            <h3 className="text-xl md:text-2xl font-bold text-gray-900 mb-4">Category</h3>
-            <div className="overflow-x-auto rounded-2xl border border-gray-200 bg-white">
-              <table className="min-w-full text-left text-[14px]">
-                <thead>
-                  <tr className="bg-gray-50 text-gray-700">
-                    <th className="px-4 py-3 font-semibold">S/N</th>
-                    <th className="px-4 py-3 font-semibold">Type</th>
-                    <th className="px-4 py-3 font-semibold">Price</th>
-                    <th className="px-4 py-3 font-semibold">Duration</th>
-                  </tr>
-                </thead>
-                <tbody className="divide-y divide-gray-200 text-gray-800">
-                  {[
-                    { n: '1', type: 'Shortlet Apartment', price: '₦700,000', duration: 'Weekly' },
-                    { n: '2', type: 'Air BnB', price: '₦315,000', duration: 'Weekly' },
-                    { n: '3', type: 'Shared Hostels', price: '₦105,000', duration: 'Weekly' },
-                    { n: '4', type: 'Hotel Apartment', price: '₦315,000', duration: 'Weekly' }
-                  ].map((row) => (
-                    <tr key={row.n}>
-                      <td className="px-4 py-3 font-medium">{row.n}</td>
-                      <td className="px-4 py-3">{row.type}</td>
-                      <td className="px-4 py-3">{row.price}</td>
-                      <td className="px-4 py-3">{row.duration}</td>
-                    </tr>
-                  ))}
-                </tbody>
-              </table>
+          <div className="mb-8">
+            <h3 className="text-2xl font-bold text-gray-900 mb-6 text-center">Accommodation Options</h3>
+            <div className="grid md:grid-cols-2 gap-6">
+              {accommodationInNaira.map((acc, index) => (
+                <motion.div
+                  key={acc.sn}
+                  initial={{ opacity: 0, scale: 0.95 }}
+                  whileInView={{ opacity: 1, scale: 1 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.4, delay: index * 0.1 }}
+                  className="bg-white rounded-2xl p-6 border border-gray-200 hover:border-blue-300 hover:shadow-xl transition-all duration-300 group"
+                >
+                  <div className="flex items-start justify-between mb-4">
+                    <div>
+                      <div className="flex items-center gap-2 mb-2">
+                        <div className="w-8 h-8 bg-blue-100 rounded-lg flex items-center justify-center text-blue-600 font-bold text-sm">
+                          {acc.sn}
+                        </div>
+                        <h4 className="text-xl font-bold text-gray-900">{acc.type}</h4>
+                      </div>
+                      {/* <div className="flex items-center gap-2 text-sm text-gray-600">
+                        <Clock className="w-4 h-4" />
+                        <span>{acc.duration}</span>
+                      </div> */}
+                    </div>
+                    <Home className="w-8 h-8 text-gray-300 group-hover:text-blue-500 transition-colors" />
+                  </div>
+                  <div className="bg-linear-to-r from-blue-50 to-indigo-50 rounded-xl p-4 border border-blue-100">
+                    <div className="text-sm text-gray-600 mb-1">From</div>
+                    <div className="text-3xl font-bold text-blue-600">{formatPrice(acc.price)}</div>
+                    <div className="text-xs text-gray-500 mt-1">per {acc.duration.toLowerCase()}</div>
+                  </div>
+                </motion.div>
+              ))}
             </div>
-            <p className="text-[14px] text-gray-700 mt-4 max-w-4xl font-medium">
-              For personalized assistance with accommodation, please reach out to our Admissions Office – we’ll be happy to guide you.
-            </p>
           </div>
+
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5 }}
+            className="bg-linear-to-br from-blue-50 via-indigo-50 to-purple-50 rounded-2xl p-8 border border-blue-200"
+          >
+            <div className="max-w-3xl mx-auto text-center">
+              <div className="w-16 h-16 bg-blue-600 rounded-2xl flex items-center justify-center mx-auto mb-4">
+                <Home className="w-8 h-8 text-white" />
+              </div>
+              <h3 className="text-2xl font-bold text-gray-900 mb-3">Need Help Finding Your Perfect Home?</h3>
+              <p className="text-gray-700 leading-relaxed mb-6">
+                Our dedicated accommodation team is here to guide you through the process. We&apos;ll help you find the perfect place that matches your budget, preferences, and lifestyle.
+              </p>
+              <a
+                href="/contact"
+                className="inline-flex items-center gap-2 bg-blue-600 text-white px-6 py-3 rounded-xl font-semibold hover:bg-blue-700 transition-colors shadow-lg"
+              >
+                <span>Contact Us for Support</span>
+                <CheckCircle2 className="w-5 h-5" />
+              </a>
+            </div>
+          </motion.div>
+
+          {/* Currency Conversion Note */}
+          <motion.div
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5, delay: 0.2 }}
+            className="mt-8 bg-linear-to-r from-amber-50 to-orange-50 rounded-xl p-6 border border-amber-200"
+          >
+            <div className="flex items-start gap-4">
+              <div className="p-2 bg-amber-100 rounded-lg shrink-0">
+                <Sparkles className="w-5 h-5 text-amber-600" />
+              </div>
+              <div>
+                <h4 className="font-bold text-gray-900 mb-2">Live Currency Conversion</h4>
+                <p className="text-sm text-gray-700 leading-relaxed">
+                  All prices are shown in Nigerian Naira (NGN) and converted to your selected currency using real-time exchange rates.
+                  Rates update regularly but may fluctuate. For guaranteed pricing and payment plans, please contact our admissions team.
+                </p>
+              </div>
+            </div>
+          </motion.div>
         </div>
       </section>
 
       {/* CTA */}
-      <section className="py-16">
-        <div className="max-w-7xl mx-auto px-6">
-          <div className="bg-linear-to-r from-red-600 to-red-700 rounded-2xl p-8 text-white text-center">
-            <h3 className="text-2xl md:text-3xl font-bold mb-2">Ready to join British AUC University Pathway?</h3>
-            <p className="text-white/90 mb-6">Contact us to learn more about fees, admissions and accommodation options.</p>
-            <div className="flex justify-center gap-4">
-              <a href="/colleges/apply" className="bg-white text-red-600 px-6 py-3 rounded-xl font-medium hover:bg-white/90 transition-colors">Apply Now</a>
-              {/* <a href="/colleges/contact" className="bg-white/20 text-white px-6 py-3 rounded-xl font-medium hover:bg-white/30 transition-colors">Contact Us</a> */}
+      <section className="py-20 bg-linear-to-br from-gray-900 via-red-900 to-gray-900 relative overflow-hidden">
+        {/* Background decoration */}
+        <div className="absolute inset-0 opacity-10">
+          <div className="absolute top-0 left-1/4 w-96 h-96 bg-red-500 rounded-full blur-3xl" />
+          <div className="absolute bottom-0 right-1/4 w-96 h-96 bg-white rounded-full blur-3xl" />
+        </div>
+
+        <div className="relative max-w-5xl mx-auto px-6 text-center">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+          >
+            <div className="inline-flex items-center gap-2 bg-white/10 backdrop-blur-md border border-white/20 px-4 py-2 rounded-full text-white/90 text-sm font-medium mb-6">
+              <GraduationCap className="w-4 h-4" />
+              Start Your Journey
             </div>
+            <h3 className="text-3xl md:text-5xl font-bold text-white mb-6 leading-tight">
+              Ready to Begin Your <br />
+              <span className="text-red-400">Academic Journey?</span>
+            </h3>
+            <p className="text-lg text-white/80 mb-10 max-w-2xl mx-auto leading-relaxed">
+              Take the first step towards your future. Our admissions team is ready to discuss fees, payment plans, and accommodation options.
+            </p>
+            <div className="flex flex-col sm:flex-row justify-center gap-4">
+              <a
+                href="/colleges/apply"
+                className="inline-flex items-center justify-center gap-2 bg-white text-red-600 px-8 py-4 rounded-xl font-bold hover:bg-gray-100 transition-all duration-200 shadow-2xl hover:shadow-red-500/50 hover:scale-105"
+              >
+                <span>Apply Now</span>
+                <CheckCircle2 className="w-5 h-5" />
+              </a>
+              <a
+                href="#"
+                className="inline-flex items-center justify-center gap-2 bg-white/10 backdrop-blur-md border border-white/20 text-white px-8 py-4 rounded-xl font-bold hover:bg-white/20 transition-all duration-200"
+              >
+                <span>Download Brochure</span>
+                <Sparkles className="w-5 h-5" />
+              </a>
           </div>
+          </motion.div>
         </div>
       </section>
 

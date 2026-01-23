@@ -20,6 +20,8 @@ const Footer = () => {
                 width={140}
                 height={140}
                 className="h-12 w-auto "
+                loading="lazy"
+                fetchPriority="auto"
               />
             </Link>
             <p className="text-gray-400 text-sm leading-relaxed">

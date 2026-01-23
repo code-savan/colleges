@@ -4,6 +4,27 @@ body {
     font-family: var(--font-open-sans), sans-serif;
 }
 
+/* Performance optimizations for Chrome */
+* {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+img {
+    content-visibility: auto;
+}
+
+/* Optimize animations for better performance */
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
+}
+
 @layer utilities {
   .text-balance {
     text-wrap: balance;
