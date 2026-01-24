@@ -165,7 +165,7 @@ const Page = () => {
                   Achieve your UK degree studying at <span className="text-red-600">British AUC University Study Centre</span>
                 </h1>
                 <p className="text-sm text-gray-800/90 leading-relaxed">
-                  Welcome to British AUC University Pathway, where you can earn your qualification directly with us. Through our university programmes, you will gain the skills, knowledge, and support you need to graduate with an internationally recognised degree, opening pathways to rewarding careers and further academic opportunities worldwide. Begin your degree journey with us today.
+                  Welcome to British AUC University Study Centre, where you can earn your qualification directly with us. Through our university programmes, you will gain the skills, knowledge, and support you need to graduate with an internationally recognised degree, opening pathways to rewarding careers and further academic opportunities worldwide. Begin your degree journey with us today.
                 </p>
               </div>
               <div className="grid grid-cols-3 gap-3 items-stretch">
