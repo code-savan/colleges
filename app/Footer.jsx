@@ -19,7 +19,7 @@ const Footer = () => {
           <div className="lg:col-span-1">
             <Link href="/" className="inline-block mb-6 group">
               <Image
-                src="/collegeslogo.png"
+                src="/footerlogo.png"
                 alt="British AUC University Pathway"
                 width={160}
                 height={160}
