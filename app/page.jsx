@@ -169,7 +169,7 @@ const Page = () => {
                 </p>
               </div>
               <div className="grid grid-cols-3 gap-3 items-stretch">
-                {/* Degree Course 1 */}
+                {/* Degree Course */}
                 <Link
                   href="/courses/degrees/llb-law"
                   className="group border-2 rounded-lg p-2 border-blue-400/80 bg-white shadow-sm hover:shadow-md transition-all hover:border-blue-600 flex flex-col h-full"
@@ -185,18 +185,18 @@ const Page = () => {
                   </div>
                 </Link>
 
-                {/* Degree Course 2 */}
+                {/* Diploma Course */}
                 <Link
-                  href="/courses/degrees/ba-business-management"
-                  className="group border-2 rounded-lg p-2 border-blue-400/80 bg-white shadow-sm hover:shadow-md transition-all hover:border-blue-600 flex flex-col h-full"
+                  href="/courses/diplomas/diploma-information-technology"
+                  className="group border-2 rounded-lg p-2 border-green-400/80 bg-white shadow-sm hover:shadow-md transition-all hover:border-green-600 flex flex-col h-full"
                 >
-                  <div className="text-[10px] md:text-xs font-bold text-blue-600 group-hover:text-blue-700 line-clamp-2 mb-1">
-                    BA Business Management
+                  <div className="text-[10px] md:text-xs font-bold text-green-600 group-hover:text-green-700 line-clamp-2 mb-1">
+                    Diploma in IT
                   </div>
                   <div className="text-[9px] md:text-[10px] text-gray-600 mb-2 grow">
-                    Undergraduate
+                    Level 3 Diploma
                   </div>
-                  <div className="text-[9px] md:text-[10px] text-blue-600 group-hover:underline font-medium">
+                  <div className="text-[9px] md:text-[10px] text-green-600 group-hover:underline font-medium">
                     View Course →
                   </div>
                 </Link>

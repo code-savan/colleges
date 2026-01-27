@@ -20,6 +20,7 @@ const navLinks = [
 
 const coursesDropdown = [
   { href: "/courses/degrees", label: "Degrees" },
+  { href: "/courses/diplomas", label: "Diplomas" },
   { href: "/courses/masters", label: "Masters" },
 ]
 
@@ -56,7 +57,7 @@ const NavBar = () => {
           {/* Logo */}
           <Link href="/" className="flex items-center">
             <Image
-              src="/collegeslogo.jpeg"
+              src="/collegeslogos.png"
               alt="British AUC University Pathway"
               width={160}
               height={160}
