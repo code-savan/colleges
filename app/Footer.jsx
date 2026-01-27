@@ -21,12 +21,12 @@ const Footer = () => {
               <Image
                 src="/footerlogo.png"
                 alt="British AUC University Pathway"
-                width={160}
-                height={160}
-                className="h-14 w-auto transition-transform group-hover:scale-105"
+                width={250}
+                height={250}
+                className="h-28 w-auto transition-transform group-hover:scale-105"
                 loading="lazy"
                 fetchPriority="auto"
-              />
+              /> 
             </Link>
             <p className="text-gray-300 text-sm leading-relaxed mb-6">
               Your pathway to prestigious university undergraduate degrees. We help you prepare for entry into leading universities worldwide.
