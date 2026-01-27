@@ -90,7 +90,7 @@ const DiplomaDetailPage = async ({ params }) => {
             {/* Left: Course Title */}
             <AnimatedHero className="flex-1 lg:absolute lg:bottom-10 w-full lg:w-auto">
               <div className="mb-4 lg:mb-6">
-                <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-3 lg:mb-4 leading-tight">
+                <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-3 lg:mb-4 leading-tight md:w-[70%]">
                   {course.title}
                 </h1>
               </div>
