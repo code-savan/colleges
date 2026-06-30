@@ -585,7 +585,6 @@ const UndergraduateApplicationForm = () => {
                     placeholder="ENTER YOUR FULL NAME"
                     error={errors.fullName}
                     icon={User}
-                    className="uppercase"
                   />
 
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
@@ -604,7 +603,7 @@ const UndergraduateApplicationForm = () => {
                   </div>
 
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                    <InputField label="Religion" name="religion" value={formData.religion} onChange={handleChange} />
+                    <InputField label="Religion" name="religion" value={formData.religion} onChange={handleChange} icon={FileText} />
                     <div>
                       <label className="block text-sm font-semibold text-gray-700 mb-3">Specially Abled</label>
                       <div className="flex gap-3">
