@@ -36,6 +36,9 @@ yarn-error.log*
 # vercel
 .vercel
 
+# local form submission backups
+.submissions/
+
 # typescript
 *.tsbuildinfo
 next-env.d.ts
