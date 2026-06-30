@@ -3,7 +3,7 @@
 import React from 'react'
 import { motion } from 'framer-motion'
 import Link from 'next/link'
-import { ArrowLeft, FileText, GraduationCap, BookOpen } from 'lucide-react'
+import { ArrowLeft, FileText, GraduationCap, BookOpen, BookCheck } from 'lucide-react'
 import NavBar from '../NavBar'
 import Footer from '../Footer'
 
@@ -29,6 +29,13 @@ const Apply = () => {
       icon: FileText,
       link: "/apply/masters",
       color: "purple"
+    },
+    {
+      title: "IELTS Registration",
+      description: "Register for IELTS test and training",
+      icon: BookCheck,
+      link: "/apply/ielts",
+      color: "red"
     }
   ]
 

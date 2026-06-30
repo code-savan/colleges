@@ -1,6 +1,5 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-    output: 'export',
     images: {
         dangerouslyAllowSVG: true,
         unoptimized: true,
@@ -15,6 +14,11 @@ const nextConfig = {
                 protocol: 'https',
                 hostname: 'api.exchangerate-api.com',
                 pathname: '/v4/latest/**',
+            },
+            {
+                protocol: 'https',
+                hostname: 'utfs.io',
+                pathname: '/**',
             },
         ],
     },
