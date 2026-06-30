@@ -122,12 +122,16 @@ function doPost(e) {
     }
 
     // Ensure headers exist in the first row
-    if (targetSheet.getLastRow() === 0) {
+    const firstCell = targetSheet.getRange(1, 1).getValue()
+    if (targetSheet.getLastRow() === 0 || firstCell !== "Timestamp") {
+      // Clear any existing content in first row
+      if (targetSheet.getLastRow() > 0) {
+        targetSheet.getRange(1, 1, targetSheet.getLastRow(), ALL_FIELDS.length).clear()
+      }
       const headerRow = targetSheet.getRange(1, 1, 1, ALL_FIELDS.length)
       headerRow.setValues([ALL_FIELDS])
       headerRow.setFontWeight("bold")
       headerRow.setBackground("#f3f4f6")
-      // Freeze header row
       targetSheet.setFrozenRows(1)
     }
 
@@ -144,7 +148,15 @@ function doPost(e) {
       return ""
     })
 
-    targetSheet.appendRow(row)
+    const lastRow = targetSheet.getLastRow() + 1
+    targetSheet.getRange(lastRow, 1, 1, row.length).setValues([row])
+
+    // Render passport image inline using IMAGE() formula
+    const passportUrl = params.passportDataPage || params.passportDataPageUrl || ""
+    if (passportUrl) {
+      const passportCol = ALL_FIELDS.indexOf("Passport Data Page URL") + 1
+      targetSheet.getRange(lastRow, passportCol).setFormula(`=IMAGE("${passportUrl}", 1)`)
+    }
 
     return ContentService
       .createTextOutput("SUCCESS")
