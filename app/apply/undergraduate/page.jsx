@@ -529,6 +529,7 @@ const UndergraduateApplicationForm = () => {
                     fileUrl={passportUrl}
                     onUpload={(url) => setPassportUrl(url)}
                     onRemove={() => setPassportUrl("")}
+                    label="Upload Passport Photograph"
                   />
                   <AnimatePresence>
                     {errors.photo && (

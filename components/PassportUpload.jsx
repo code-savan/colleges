@@ -4,7 +4,7 @@ import { useState } from "react"
 import { UploadButton } from "@uploadthing/react"
 import { X, Loader2, Upload, CheckCircle2, FileImage } from "lucide-react"
 
-export default function PassportUpload({ onUpload, onRemove, fileUrl }) {
+export default function PassportUpload({ onUpload, onRemove, fileUrl, label = "Upload Passport Data Page" }) {
   const [isUploading, setIsUploading] = useState(false)
 
   if (fileUrl) {
@@ -81,7 +81,7 @@ export default function PassportUpload({ onUpload, onRemove, fileUrl }) {
               </div>
               <div className="text-center">
                 <p className="text-sm font-semibold text-gray-700 group-hover:text-red-600 transition-colors">
-                  {ready ? "Upload Passport Data Page" : "Preparing..."}
+                  {ready ? label : "Preparing..."}
                 </p>
                 <p className="text-xs text-gray-400 mt-1">Image or PDF up to 4MB</p>
                 <p className="text-xs text-gray-300 mt-0.5">Click to browse or drag & drop</p>
