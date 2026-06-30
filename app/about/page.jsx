@@ -4,6 +4,7 @@
 import React from 'react'
 import { motion } from 'framer-motion'
 import Image from 'next/image'
+import Link from 'next/link'
 import { BookOpen, Target, Heart, Globe, Users, Award, GraduationCap, Sparkles, CheckCircle2, ArrowRight } from 'lucide-react'
 import NavBar from '../NavBar'
 import Footer from '../Footer'
@@ -382,20 +383,20 @@ const About = () => {
               Join thousands of students who have successfully progressed to their dream universities worldwide
             </p>
             <div className="flex flex-col sm:flex-row justify-center gap-4">
-              <a
+              <Link
                 href="/apply"
                 className="inline-flex items-center justify-center gap-2 bg-white text-red-600 px-8 py-4 rounded-xl font-bold hover:bg-gray-100 transition-all duration-200 shadow-2xl hover:shadow-red-500/50 hover:scale-105"
               >
                 <span>Apply Now</span>
                 <CheckCircle2 className="w-5 h-5" />
-              </a>
-              <a
+              </Link>
+              <Link
                 href="/courses/degrees"
                 className="inline-flex items-center justify-center gap-2 bg-white/10 backdrop-blur-md border border-white/20 text-white px-8 py-4 rounded-xl font-bold hover:bg-white/20 transition-all duration-200"
               >
                 <span>View Programmes</span>
                 <ArrowRight className="w-5 h-5" />
-              </a>
+              </Link>
             </div>
           </motion.div>
         </div>

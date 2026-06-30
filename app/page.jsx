@@ -458,6 +458,90 @@ const Page = () => {
         </div>
       </section>
 
+      {/* Welcome Speech Section */}
+      <section className="relative py-20 md:py-24 overflow-hidden bg-white">
+        <div className="max-w-7xl mx-auto px-6">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+            className="flex flex-col items-center text-center"
+          >
+            {/* Badge */}
+            <div className="flex items-center gap-3 mb-6">
+              <div className="w-9 h-9 rounded-xl bg-red-50 ring-1 ring-red-100 flex items-center justify-center">
+                <svg className="w-4.5 h-4.5 text-red-500" fill="currentColor" viewBox="0 0 24 24">
+                  <path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h3.983v10h-9.983z" />
+                </svg>
+              </div>
+              <span className="text-sm font-semibold text-red-600 uppercase tracking-wider">Welcome Message</span>
+            </div>
+
+            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 tracking-tight leading-tight mb-10">
+              A Word from Our<br />
+              <span className="text-red-600">Academic Director</span>
+            </h2>
+
+            {/* Image + Speech row */}
+            <div className="grid md:grid-cols-5 gap-10 md:gap-16 items-start max-w-5xl mx-auto text-left">
+              {/* Image */}
+              <div className="md:col-span-1">
+                <div className="sticky top-24">
+                  <div className="relative mx-auto w-40 md:w-full max-w-[180px]">
+                    <div className="relative aspect-[4/5] rounded-2xl overflow-hidden shadow-lg ring-1 ring-gray-200">
+                      <Image
+                        src="/vitalis.jpeg"
+                        alt="Vitalis Nwaogu"
+                        fill
+                        className="object-cover object-center"
+                        sizes="180px"
+                      />
+                    </div>
+                    <div className="mt-4 text-center">
+                      <p className="font-bold text-gray-900 text-sm">Vitalis Nwaogu</p>
+                      <p className="text-xs text-gray-500">Academic Director</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              {/* Speech */}
+              <div className="md:col-span-4">
+                <div className="space-y-4 text-gray-600 leading-relaxed text-xs md:text-sm">
+                  <p>
+                    My name is <strong className="text-gray-900">Vitalis Nwaogu</strong> and it is my pleasure to welcome you to British AUC University Pathway. An institution dedicated to academic excellence, global opportunities, and student success. Whether you are a prospective student, parent, educational partner, or visitor, I thank you for taking the time to learn more about who we are and what we stand for.
+                  </p>
+                  <p>
+                    Here at the British AUC University Pathway, we have a Study Centre were we are committed to coaching students through internationally recognised educational pathways that prepare them for success at leading universities around the world. Our focus extends beyond academic achievement; we are passionate about developing confident, responsible, and globally minded individuals who are equipped to make meaningful contributions to their communities and professions.
+                  </p>
+                  <p>
+                    Our Study Centre is built on the principles of excellence, integrity, innovation, and personalised student support. We recognise that every student&apos;s journey is unique, and we take pride in providing expert guidance from the initial application process through to successful university placement and beyond. Every member of our team is committed to ensuring that our students receive the highest standard of academic and professional support throughout their educational journey.
+                  </p>
+                  <p>
+                    As the global education landscape continues to evolve, British AUC University Pathway remains steadfast in its commitment to delivering quality programmes, fostering international partnerships, and embracing innovative approaches that prepare students for the opportunities and challenges of the future.
+                  </p>
+                  <p>
+                    We are proud of the trust placed in us by our students, parents, and partners for over 16 years and we remain dedicated to maintaining the highest standards of professionalism, transparency, and service excellence.
+                  </p>
+                  <p>
+                    Whether your aspiration is to pursue undergraduate studies, postgraduate education, professional qualifications, or specialised international pathway programmes, we are honoured to be part of your journey toward achieving your academic and career ambitions.
+                  </p>
+                  <p>
+                    Thank you for considering British AUC University Pathway. We look forward to welcoming you into our community and partnering with you as you take the next step towards a successful global future.
+                  </p>
+                </div>
+
+                <div className="pt-4 mt-6 border-t border-gray-100 md:hidden">
+                  <p className="font-bold text-gray-900 text-sm">Vitalis Nwaogu</p>
+                  <p className="text-xs text-gray-500">Academic Director, British AUC University Pathway</p>
+                </div>
+              </div>
+            </div>
+          </motion.div>
+        </div>
+      </section>
+
       {/* Why Choose Us Section */}
       <section className="relative py-20 md:py-24 overflow-hidden bg-linear-to-b from-gray-50 to-white">
         {/* Decorative elements */}
