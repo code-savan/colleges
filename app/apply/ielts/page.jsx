@@ -86,23 +86,28 @@ const IeltsRegistrationForm = () => {
     setIsSubmitting(true)
     setSubmitError("")
 
-    const submissionData = new FormData()
-    submissionData.append("formType", "IELTS")
+    const params = new URLSearchParams()
+    params.set("formType", "IELTS")
     Object.entries(formData).forEach(([key, value]) => {
-      submissionData.append(key, value)
+      params.set(key, value)
     })
-    submissionData.append("passportDataPage", passportUrl)
+    params.set("passportDataPage", passportUrl)
 
     try {
       if (GOOGLE_APPS_SCRIPT_URL) {
         const res = await fetch(GOOGLE_APPS_SCRIPT_URL, {
           method: "POST",
-          body: submissionData,
+          body: params,
+          mode: "no-cors",
         })
-        const result = await res.text()
-        if (!res.ok) throw new Error(result || "Submission failed")
+        if (res.type === "opaque") {
+          console.log("Data sent (Google Apps Script CORS opaque response)")
+        } else {
+          const result = await res.text()
+          if (!res.ok) throw new Error(result || "Submission failed")
+        }
       } else {
-        console.log("IELTS Form submitted:", Object.fromEntries(submissionData))
+        console.log("IELTS Form submitted:", Object.fromEntries(params))
         await new Promise(resolve => setTimeout(resolve, 1000))
       }
 

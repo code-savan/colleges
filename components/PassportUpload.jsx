@@ -1,23 +1,33 @@
 "use client"
 
 import { UploadButton } from "@uploadthing/react"
-import { CheckCircle2, X } from "lucide-react"
+import { X } from "lucide-react"
 
 export default function PassportUpload({ onUpload, onRemove, fileUrl }) {
   if (fileUrl) {
     return (
-      <div className="flex items-center gap-3 p-3 rounded-xl border border-gray-200 bg-gray-50">
-        <div className="w-10 h-10 rounded-lg bg-green-100 flex items-center justify-center">
-          <CheckCircle2 className="w-5 h-5 text-green-600" />
-        </div>
-        <span className="text-sm text-gray-600 flex-1 truncate">Passport uploaded</span>
+      <div className="relative rounded-xl border border-gray-200 overflow-hidden group">
+        <img
+          src={fileUrl}
+          alt="Passport data page"
+          className="w-full h-40 object-contain bg-gray-100"
+        />
         <button
           type="button"
           onClick={onRemove}
-          className="p-1 hover:bg-gray-200 rounded-lg transition-colors"
+          className="absolute top-2 right-2 w-7 h-7 bg-white/90 backdrop-blur rounded-full flex items-center justify-center shadow-sm opacity-0 group-hover:opacity-100 transition-opacity hover:bg-white"
         >
-          <X className="w-4 h-4 text-gray-400" />
+          <X className="w-4 h-4 text-gray-600" />
         </button>
+        <div className="absolute bottom-0 inset-x-0 bg-gradient-to-t from-black/40 to-transparent h-12" />
+        <a
+          href={fileUrl}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="absolute bottom-2 left-3 text-xs text-white font-medium underline underline-offset-2 opacity-0 group-hover:opacity-100 transition-opacity"
+        >
+          Open full size
+        </a>
       </div>
     )
   }
