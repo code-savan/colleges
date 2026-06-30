@@ -151,11 +151,13 @@ function doPost(e) {
     const lastRow = targetSheet.getLastRow() + 1
     targetSheet.getRange(lastRow, 1, 1, row.length).setValues([row])
 
-    // Render passport image inline using IMAGE() formula
+    // Render passport image inline + add URL as cell note on the image cell
     const passportUrl = params.passportDataPage || params.passportDataPageUrl || ""
     if (passportUrl) {
       const passportCol = ALL_FIELDS.indexOf("Passport Data Page URL") + 1
-      targetSheet.getRange(lastRow, passportCol).setFormula(`=IMAGE("${passportUrl}", 1)`)
+      const cell = targetSheet.getRange(lastRow, passportCol)
+      cell.setFormula(`=IMAGE("${passportUrl}", 1)`)
+      cell.setNote(`Passport URL (copy this):\n${passportUrl}`)
     }
 
     return ContentService
