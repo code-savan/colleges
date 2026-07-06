@@ -74,7 +74,7 @@ const Footer = () => {
             <ul className="space-y-3">
               {[
                 { href: "/about/", label: "About Us" },
-                { href: "/courses/degrees/", label: "Degree Courses" },
+                { href: "/courses/degrees/", label: "Bachelor Courses" },
                 { href: "/courses/masters/", label: "Master's Courses" },
                 { href: "/admissions/", label: "Admissions" },
                 { href: "/college-life/", label: "College Life" },
@@ -105,7 +105,7 @@ const Footer = () => {
               {[
                 { href: "/#programmes", label: "A-Level Program" },
                 { href: "/#programmes", label: "International Foundation Year" },
-                { href: "/#programmes", label: "Diploma" },
+                { href: "/#programmes", label: "Foundation" },
                 { href: "/#programmes", label: "SELT Preparation" },
                 { href: "/courses/degrees/", label: "Undergraduate Degrees" },
                 { href: "/courses/masters/", label: "Postgraduate Masters" },
