@@ -150,7 +150,7 @@ const DiplomaCoursesPage = () => {
                       </div>
                       <div className="flex items-start gap-2 text-sm text-gray-700">
                         <MapPin className="w-4 h-4 text-purple-500 shrink-0 mt-0.5" />
-                        <span className="line-clamp-2">{course.locations.join(', ')}</span>
+                        <span className="line-clamp-2">British AUC University Study Centre, Blended-Learning, Online</span>
                       </div>
                     </div>
 

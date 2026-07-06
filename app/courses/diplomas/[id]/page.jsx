@@ -134,14 +134,18 @@ const DiplomaDetailPage = async ({ params }) => {
                   {/* Cost */}
                   <div>
                     <p className="text-xs font-semibold text-purple-500 uppercase tracking-wider mb-1">Cost</p>
-                    <p className="text-base sm:text-lg font-semibold text-gray-900">{course.cost}</p>
+                    <div className="flex items-center gap-2">
+                      <span className="text-sm text-gray-400 line-through">€5,950</span>
+                      <span className="text-base sm:text-lg font-bold text-gray-900">€3,570</span>
+                    </div>
+                    <div className="text-xs text-green-600 font-semibold">Save 40%</div>
                   </div>
                 </div>
 
-                {/* Location */}
+                {/* Delivery Mode */}
                 <div className="mb-6 sm:mb-8">
-                  <p className="text-xs font-semibold text-purple-500 uppercase tracking-wider mb-1">Location</p>
-                  <p className="text-sm sm:text-base font-semibold text-gray-900 leading-relaxed">{course.locations.join(', ')}</p>
+                  <p className="text-xs font-semibold text-purple-500 uppercase tracking-wider mb-1">Delivery Mode</p>
+                  <p className="text-sm sm:text-base font-semibold text-gray-900 leading-relaxed">British AUC University Study Centre, Blended-Learning, Online</p>
                 </div>
 
                 {/* Apply Button */}
@@ -349,12 +353,17 @@ const DiplomaDetailPage = async ({ params }) => {
                     Scholarship & Payment
                   </h3>
                   <div className="space-y-4">
-                    {course.scholarship && (
-                      <div className="bg-green-50 border border-green-200 rounded-lg p-4">
-                        <div className="text-sm text-green-700 mb-1">Available Scholarship</div>
-                        <div className="text-xl font-bold text-green-900">{course.scholarship}</div>
+                    <div className="bg-green-50 border border-green-200 rounded-lg p-4">
+                      <div className="flex items-center justify-between mb-2">
+                        <span className="text-sm text-green-700 font-semibold">Special Offer</span>
+                        <span className="bg-green-500 text-white text-xs font-bold px-2 py-0.5 rounded-full">-40%</span>
                       </div>
-                    )}
+                      <div className="flex items-center gap-2 mb-1">
+                        <span className="text-sm text-gray-400 line-through">€5,950</span>
+                        <span className="text-xl font-bold text-green-900">€3,570</span>
+                      </div>
+                      <p className="text-xs text-green-700">/year · Limited time discount</p>
+                    </div>
                     <div className="bg-gray-50 rounded-lg p-4 border border-gray-200">
                       <div className="text-xs text-gray-600 font-semibold mb-2">PAYMENT PLAN</div>
                       <p className="text-sm text-gray-700 leading-relaxed">{course.paymentPlan}</p>

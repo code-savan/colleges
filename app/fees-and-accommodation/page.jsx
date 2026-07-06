@@ -6,11 +6,13 @@ import NavBar from '../NavBar'
 import Footer from '../Footer'
 import { CheckCircle2, RefreshCw, Sparkles, Home, GraduationCap, Shield, Clock } from 'lucide-react'
 
-// Base prices in Naira
-const feesInNaira = [
-  { sn: 1, programme: "A - Level", price: 6729000, duration: "One Year" },
-  { sn: 2, programme: "International Foundation Year", price: 6729000, duration: "One Year" },
-  { sn: 3, programme: "Ontario Secondary School Diploma", price: 6729000, duration: "One Year" },
+// Programme fees in Euro (displayed directly, no conversion)
+const programmeFees = [
+  { sn: 1, programme: "A - Level", standardPrice: 5950, discountedPrice: 3570, duration: "One Year" },
+  { sn: 2, programme: "International University Foundation Programme", standardPrice: 5950, discountedPrice: 3570, duration: "One Year" },
+  { sn: 3, programme: "Ontario Secondary School Diploma", standardPrice: 5950, discountedPrice: 3570, duration: "One Year" },
+  { sn: 4, programme: "Bachelor Degree Programme", standardPrice: 7650, discountedPrice: 4590, duration: "One Year" },
+  { sn: 5, programme: "Master Degree Programme", standardPrice: 7950, discountedPrice: 4770, duration: "One Year" },
 ]
 
 const accommodationInNaira = [
@@ -198,7 +200,7 @@ const Page = () => {
           </motion.div>
 
           <div className="grid gap-6 mb-12">
-            {feesInNaira.map((fee, index) => (
+            {programmeFees.map((fee, index) => (
               <motion.div
                 key={fee.sn}
                 initial={{ opacity: 0, y: 20 }}
@@ -220,10 +222,17 @@ const Page = () => {
                       </div>
                     </div>
                   </div>
-                  <div className="flex items-center gap-3">
+                  <div className="flex items-center gap-4">
                     <div className="text-right">
                       <div className="text-sm text-gray-600 mb-1">Annual Fee</div>
-                      <div className="text-3xl font-bold text-red-600">{formatPrice(fee.price)}</div>
+                      <div className="flex items-center gap-2 justify-end">
+                        <span className="text-xl text-gray-400 line-through">€{fee.standardPrice.toLocaleString()}</span>
+                        <span className="text-3xl font-bold text-red-600">€{fee.discountedPrice.toLocaleString()}</span>
+                      </div>
+                      <div className="text-xs text-green-600 font-semibold mt-1">Save {Math.round((1 - fee.discountedPrice / fee.standardPrice) * 100)}%</div>
+                    </div>
+                    <div className="bg-green-500 text-white text-xs font-bold px-2 py-1 rounded-full -rotate-6">
+                      -{Math.round((1 - fee.discountedPrice / fee.standardPrice) * 100)}%
                     </div>
                   </div>
                 </div>

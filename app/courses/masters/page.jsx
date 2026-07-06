@@ -171,19 +171,19 @@ const MastersPage = () => {
                       </span>
                     </div>
 
-                    {/* Locations */}
+                    {/* Delivery Mode */}
                     <div className="space-y-2">
                       <div className="flex items-center gap-2 text-sm text-gray-700">
                         <MapPin className="w-4 h-4 text-red-600 shrink-0" />
-                        <span className="font-medium">Study locations:</span>
+                        <span className="font-medium">Delivery Mode:</span>
                       </div>
                       <div className="flex flex-wrap gap-2">
-                        {course.locations.map(loc => (
+                        {["British AUC University Study Centre", "Blended-Learning", "Online"].map(mode => (
                           <span
-                            key={loc}
+                            key={mode}
                             className="text-xs bg-gray-100 text-gray-700 px-2 py-1 rounded"
                           >
-                            {loc}
+                            {mode}
                           </span>
                         ))}
                       </div>

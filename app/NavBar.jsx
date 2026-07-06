@@ -20,8 +20,8 @@ const navLinks = [
 
 const coursesDropdown = [
   { href: "/courses/ielts", label: "IELTS" },
-  { href: "/courses/diplomas", label: "Diplomas" },
-  { href: "/courses/degrees", label: "Degrees" },
+  { href: "/courses/diplomas", label: "Foundation" },
+  { href: "/courses/degrees", label: "Bachelors" },
   { href: "/courses/masters", label: "Masters" },
 ]
 

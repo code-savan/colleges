@@ -148,10 +148,10 @@ const CourseDetailPage = async ({ params }) => {
                   </div>
                 </div>
 
-                {/* Location */}
+                {/* Delivery Mode */}
                 <div className="mb-6 sm:mb-8">
-                  <p className="text-xs font-semibold text-red-500 uppercase tracking-wider mb-1">Location</p>
-                  <p className="text-sm sm:text-base font-semibold text-gray-900 leading-relaxed">{course.locations.join(', ')}</p>
+                  <p className="text-xs font-semibold text-red-500 uppercase tracking-wider mb-1">Delivery Mode</p>
+                  <p className="text-sm sm:text-base font-semibold text-gray-900 leading-relaxed">British AUC University Study Centre, Blended-Learning, Online</p>
                 </div>
 
                 {/* Apply Button */}
@@ -431,18 +431,18 @@ const CourseDetailPage = async ({ params }) => {
             {/* Sidebar */}
             <div className="lg:col-span-1">
               <div className="sticky top-28 space-y-4">
-                {/* Study Locations */}
+                {/* Delivery Mode */}
                 <AnimatedSection delay={0.2}>
                   <div className="bg-white rounded-lg border border-gray-200 p-4">
                     <h3 className="text-base font-bold text-gray-900 mb-3 flex items-center gap-2">
                       <MapPin className="w-4 h-4 text-gray-600" />
-                      Study Location
+                      Delivery Mode
                   </h3>
                   <div className="space-y-2">
-                    {course.locations.map((location, index) => (
+                    {["British AUC University Study Centre", "Blended-Learning", "Online"].map((mode, index) => (
                         <div key={index} className="flex items-start gap-2 p-3 bg-gray-50 rounded-lg border border-gray-200">
                           <Globe className="w-4 h-4 text-gray-600 shrink-0 mt-0.5" />
-                          <span className="text-gray-700 text-sm">{location}</span>
+                          <span className="text-gray-700 text-sm">{mode}</span>
                       </div>
                     ))}
                     </div>
