@@ -216,6 +216,9 @@ const Page = () => {
             <p className="text-gray-600 max-w-2xl mx-auto">
               Comprehensive tuition packages with everything you need to succeed
             </p>
+            <p className="text-xs text-red-500 mt-3 font-medium">
+              Click the currency selector above to view prices in your preferred currency
+            </p>
           </motion.div>
 
           <div className="grid gap-6 mb-12">
