@@ -23,15 +23,15 @@ const accommodationInNaira = [
 ]
 
 const Page = () => {
-  const [selectedCurrency, setSelectedCurrency] = useState('GBP')
+  const [selectedCurrency, setSelectedCurrency] = useState('EUR')
   const [exchangeRates, setExchangeRates] = useState(null)
   const [loading, setLoading] = useState(true)
   const [lastUpdated, setLastUpdated] = useState(null)
 
   // Currency symbols
   const currencySymbols = {
-    GBP: '£',
     EUR: '€',
+    GBP: '£',
     USD: '$',
     NGN: '₦'
   }
@@ -46,8 +46,8 @@ const Page = () => {
         const data = await response.json()
 
         setExchangeRates({
-          GBP: data.rates.GBP,
           EUR: data.rates.EUR,
+          GBP: data.rates.GBP,
           USD: data.rates.USD,
           NGN: 1
         })
@@ -57,8 +57,8 @@ const Page = () => {
         console.error('Error fetching exchange rates:', error)
         // Fallback rates if API fails
         setExchangeRates({
-          GBP: 0.00054,
           EUR: 0.00063,
+          GBP: 0.00054,
           USD: 0.00069,
           NGN: 1
         })
@@ -84,6 +84,25 @@ const Page = () => {
   const formatPrice = (nairaPrice) => {
     const symbol = currencySymbols[selectedCurrency]
     const amount = convertPrice(nairaPrice)
+    return `${symbol}${amount}`
+  }
+
+  // Convert price from Euro to selected currency
+  const convertFromEuro = (euroPrice) => {
+    if (!exchangeRates) return euroPrice
+    if (selectedCurrency === 'EUR') return euroPrice
+    const inNgn = euroPrice / exchangeRates.EUR
+    const converted = inNgn * exchangeRates[selectedCurrency]
+    return converted
+  }
+
+  // Format Euro-based price with symbol
+  const formatEuroPrice = (euroPrice) => {
+    const symbol = currencySymbols[selectedCurrency]
+    const amount = convertFromEuro(euroPrice).toLocaleString('en-US', {
+      minimumFractionDigits: 0,
+      maximumFractionDigits: 0
+    })
     return `${symbol}${amount}`
   }
 
@@ -133,7 +152,7 @@ const Page = () => {
             <div className="flex items-center gap-4">
               <span className="text-sm font-semibold text-gray-900">Currency:</span>
               <div className="flex gap-2 p-1 bg-gray-100 rounded-xl">
-                {['GBP', 'EUR', 'USD', 'NGN'].map((currency) => (
+                {['EUR', 'GBP', 'USD', 'NGN'].map((currency) => (
                   <button
                     key={currency}
                     onClick={() => setSelectedCurrency(currency)}
@@ -226,8 +245,8 @@ const Page = () => {
                     <div className="text-right">
                       <div className="text-sm text-gray-600 mb-1">Annual Fee</div>
                       <div className="flex items-center gap-2 justify-end">
-                        <span className="text-xl text-gray-400 line-through">€{fee.standardPrice.toLocaleString()}</span>
-                        <span className="text-3xl font-bold text-red-600">€{fee.discountedPrice.toLocaleString()}</span>
+                        <span className="text-xl text-gray-400 line-through">{formatEuroPrice(fee.standardPrice)}</span>
+                        <span className="text-3xl font-bold text-red-600">{formatEuroPrice(fee.discountedPrice)}</span>
                       </div>
                       <div className="text-xs text-green-600 font-semibold mt-1">Save {Math.round((1 - fee.discountedPrice / fee.standardPrice) * 100)}%</div>
                     </div>
