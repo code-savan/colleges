@@ -154,11 +154,18 @@ const DiplomaCoursesPage = () => {
                       </div>
                     </div>
 
-                    {/* View Course Button */}
+                    {/* Pricing */}
                     <div className="flex items-center justify-between pt-4 border-t border-gray-100">
-                      <span className="text-sm font-semibold text-purple-600">
-                        {course.cost}
-                      </span>
+                      <div>
+                        <div className="flex items-center gap-2">
+                          <span className="text-xs text-gray-400 line-through">€5,950</span>
+                          <span className="text-sm font-bold text-purple-600">€3,570</span>
+                        </div>
+                        <div className="flex items-center gap-1 mt-0.5">
+                          <span className="bg-green-500 text-white text-[10px] font-bold px-1.5 py-0.5 rounded-full">-40%</span>
+                          <span className="text-[10px] text-green-600 font-semibold">Limited offer</span>
+                        </div>
+                      </div>
                       <span className="inline-flex items-center gap-2 text-purple-600 font-semibold text-sm group-hover:gap-3 transition-all">
                         View Course
                         <ArrowRight className="w-4 h-4" />
