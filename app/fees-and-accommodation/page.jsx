@@ -6,13 +6,13 @@ import NavBar from '../NavBar'
 import Footer from '../Footer'
 import { CheckCircle2, RefreshCw, Sparkles, Home, GraduationCap, Shield, Clock } from 'lucide-react'
 
-// Programme fees in Euro (displayed directly, no conversion)
+// Programme fees in GBP (static, no conversion)
 const programmeFees = [
-  { sn: 1, programme: "A - Level", standardPrice: 5950, discountedPrice: 3570, duration: "One Year" },
-  { sn: 2, programme: "International University Foundation Programme", standardPrice: 5950, discountedPrice: 3570, duration: "One Year" },
-  { sn: 3, programme: "Ontario Secondary School Diploma", standardPrice: 5950, discountedPrice: 3570, duration: "One Year" },
-  { sn: 4, programme: "Bachelor Degree Programme", standardPrice: 7650, discountedPrice: 4590, duration: "One Year" },
-  { sn: 5, programme: "Master Degree Programme", standardPrice: 7950, discountedPrice: 4770, duration: "One Year" },
+  { sn: 1, programme: "A - Level", price: 6950, duration: "One Year" },
+  { sn: 2, programme: "International University Foundation Programme", price: 6950, duration: "One Year" },
+  { sn: 3, programme: "Ontario Secondary School Diploma", price: 6950, duration: "One Year" },
+  { sn: 4, programme: "Bachelor Degree Programme", price: 7650, duration: "One Year" },
+  { sn: 5, programme: "Master Degree Programme", price: 8950, duration: "One Year" },
 ]
 
 const accommodationInNaira = [
@@ -87,24 +87,6 @@ const Page = () => {
     return `${symbol}${amount}`
   }
 
-  // Convert price from Euro to selected currency
-  const convertFromEuro = (euroPrice) => {
-    if (!exchangeRates) return euroPrice
-    if (selectedCurrency === 'EUR') return euroPrice
-    const inNgn = euroPrice / exchangeRates.EUR
-    const converted = inNgn * exchangeRates[selectedCurrency]
-    return converted
-  }
-
-  // Format Euro-based price with symbol
-  const formatEuroPrice = (euroPrice) => {
-    const symbol = currencySymbols[selectedCurrency]
-    const amount = convertFromEuro(euroPrice).toLocaleString('en-US', {
-      minimumFractionDigits: 0,
-      maximumFractionDigits: 0
-    })
-    return `${symbol}${amount}`
-  }
 
   return (
     <div className="min-h-screen w-full bg-white">
@@ -216,9 +198,6 @@ const Page = () => {
             <p className="text-gray-600 max-w-2xl mx-auto">
               Comprehensive tuition packages with everything you need to succeed
             </p>
-            <p className="text-xs text-red-500 mt-3 font-medium">
-              Click the currency selector above to view prices in your preferred currency
-            </p>
           </motion.div>
 
           <div className="grid gap-6 mb-12">
@@ -247,14 +226,7 @@ const Page = () => {
                   <div className="flex items-center gap-4">
                     <div className="text-right">
                       <div className="text-sm text-gray-600 mb-1">Annual Fee</div>
-                      <div className="flex items-center gap-2 justify-end">
-                        <span className="text-xl text-gray-400 line-through">{formatEuroPrice(fee.standardPrice)}</span>
-                        <span className="text-3xl font-bold text-red-600">{formatEuroPrice(fee.discountedPrice)}</span>
-                      </div>
-                      <div className="text-xs text-green-600 font-semibold mt-1">Save {Math.round((1 - fee.discountedPrice / fee.standardPrice) * 100)}%</div>
-                    </div>
-                    <div className="bg-green-500 text-white text-xs font-bold px-2 py-1 rounded-full -rotate-6">
-                      -{Math.round((1 - fee.discountedPrice / fee.standardPrice) * 100)}%
+                      <div className="text-3xl font-bold text-red-600">£{fee.price.toLocaleString()}</div>
                     </div>
                   </div>
                 </div>
