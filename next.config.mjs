@@ -27,8 +27,7 @@ const nextConfig = {
         // your project has ESLint errors.
         ignoreDuringBuilds: true,
     },
-    // Added trailingSlash option for better compatibility with static hosts
-    trailingSlash: true,
+    trailingSlash: false,
     // Performance optimizations
     compress: true,
     poweredByHeader: false,
